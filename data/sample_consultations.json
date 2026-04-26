@@ -1,0 +1,42 @@
+[
+  {
+    "id": "placeholder-001",
+    "title": "[PLACEHOLDER] Delegated act on evaluation methodology for general-purpose AI models under the AI Act",
+    "summary": "Specifies the technical standards, benchmarks and protocols that providers of general-purpose AI models must follow when carrying out capability and systemic-risk evaluations required by Article 55 of the AI Act, including red-teaming requirements and reporting templates.",
+    "deadline": "2026-06-15",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-002",
+    "title": "[PLACEHOLDER] Revision of Council Directive 1999/74/EC on minimum standards for the protection of laying hens",
+    "summary": "Reviews cage-size minimums, enrichment requirements, stocking densities and the timeline for phasing out enriched cages across all EU member states. Considers extending welfare requirements to imported eggs.",
+    "deadline": "2026-05-30",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-003",
+    "title": "[PLACEHOLDER] Implementing regulation on transparency obligations for deployers of high-risk AI systems",
+    "summary": "Sets the format, content and frequency of transparency reports that deployers of high-risk AI systems must publish, including model cards, evaluation results and incident logs. Open consultation; final rules expected late 2026.",
+    "deadline": "2026-07-12",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-004",
+    "title": "[PLACEHOLDER] Review of Council Regulation (EC) No 1/2005 on the protection of animals during transport",
+    "summary": "Considers maximum journey times, temperature thresholds, ventilation standards and whether long-distance live exports outside the EU should be phased out. Draws on the EFSA scientific opinion published in 2023.",
+    "deadline": "2026-05-20",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-005",
+    "title": "[PLACEHOLDER] Update of the EU eIDAS regulation on electronic identification and trust services",
+    "summary": "Refines technical standards for the European Digital Identity Wallet, including cross-border interoperability and revocation mechanisms. Targeted at digital identity providers and member-state authorities.",
+    "deadline": "2026-06-01",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  }
+]

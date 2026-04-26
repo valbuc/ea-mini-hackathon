@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ImpactFeed — high-impact EU consultations</title>
+    <style>
+      :root {
+        --bg: #fafaf7;
+        --fg: #1a1a1a;
+        --muted: #666;
+        --line: #e2e2dc;
+        --accent: #2b6cb0;
+        --ai: #ddeefb;
+        --animal: #fce4d6;
+        --other: #ececec;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.5;
+      }
+      header {
+        padding: 2rem 1.5rem 1rem;
+        border-bottom: 1px solid var(--line);
+      }
+      header h1 { margin: 0 0 0.25rem; font-size: 1.6rem; }
+      header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+      main { max-width: 880px; margin: 0 auto; padding: 1.5rem; }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+      .controls label { font-size: 0.85rem; color: var(--muted); margin-right: 0.5rem; }
+      .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+      .chip {
+        cursor: pointer;
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: white;
+        user-select: none;
+      }
+      .chip.active { background: var(--accent); color: white; border-color: var(--accent); }
+      .chip[data-cause="ai_governance"].active { background: #2b6cb0; }
+      .chip[data-cause="animal_welfare"].active { background: #c25b1b; }
+      .chip[data-cause="other"].active { background: #555; }
+      .slider-group { display: flex; align-items: center; gap: 0.5rem; }
+      input[type="range"] { width: 120px; }
+      .card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 0.8rem;
+        cursor: pointer;
+        transition: border-color 0.1s;
+      }
+      .card:hover { border-color: #b8b8ad; }
+      .card-head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
+      .card-title { font-weight: 600; font-size: 1.02rem; margin: 0 0 0.4rem; }
+      .card-meta { font-size: 0.82rem; color: var(--muted); }
+      .score {
+        flex-shrink: 0;
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: var(--accent);
+        min-width: 2.5rem;
+        text-align: center;
+        line-height: 1;
+        padding-top: 0.1rem;
+      }
+      .tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; }
+      .tag {
+        font-size: 0.72rem;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        font-weight: 500;
+      }
+      .tag.ai_governance { background: var(--ai); color: #1a4974; }
+      .tag.animal_welfare { background: var(--animal); color: #8a3a0e; }
+      .tag.other { background: var(--other); color: #444; }
+      .details {
+        display: none;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
+      }
+      .card.expanded .details { display: block; }
+      .details h4 { margin: 0.8rem 0 0.3rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      .details p { margin: 0; }
+      .details a { color: var(--accent); }
+      .dim-grid { display: grid; grid-template-columns: 8rem 1fr; gap: 0.4rem 1rem; margin-top: 0.5rem; }
+      .dim-grid dt { font-weight: 600; color: var(--muted); font-size: 0.85rem; }
+      .dim-grid dd { margin: 0; font-size: 0.9rem; }
+      .empty { text-align: center; color: var(--muted); padding: 3rem 1rem; }
+      .subscribe {
+        margin-top: 2.5rem;
+        padding: 1.5rem;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        text-align: center;
+      }
+      .subscribe h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+      .subscribe p { margin: 0 0 1rem; color: var(--muted); font-size: 0.92rem; }
+      .subscribe a {
+        display: inline-block;
+        padding: 0.6rem 1.4rem;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+      footer { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: 0.8rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ImpactFeed</h1>
+      <p>EU public consultations, classified by EA cause area and scored for opportunity-for-impact.</p>
+    </header>
+    <main>
+      <div class="controls">
+        <div>
+          <label>Cause:</label>
+          <div class="chips" id="cause-chips">
+            <span class="chip active" data-cause="ai_governance">AI governance</span>
+            <span class="chip active" data-cause="animal_welfare">Animal welfare</span>
+            <span class="chip" data-cause="other">Other</span>
+          </div>
+        </div>
+        <div class="slider-group">
+          <label for="min-score">Min score:</label>
+          <input type="range" id="min-score" min="1" max="5" step="1" value="1" />
+          <span id="min-score-value">1</span>
+        </div>
+      </div>
+
+      <div id="list"></div>
+
+      <div class="subscribe">
+        <h2>Get a weekly digest</h2>
+        <p>Pick your cause areas and minimum impact score; we'll email you what's open.</p>
+        <a href="https://tally.so/" target="_blank" rel="noopener">Subscribe →</a>
+        <!-- TODO(person-c): replace with the real Tally form URL once created. -->
+      </div>
+    </main>
+    <footer>
+      ImpactFeed — built at the EAGx Stockholm 2026 mini hackathon.
+      <a href="https://github.com/valbuc/ea-mini-hackathon" target="_blank" rel="noopener">Source</a>.
+    </footer>
+
+    <script>
+      const CAUSE_LABEL = {
+        ai_governance: "AI governance",
+        animal_welfare: "Animal welfare",
+        other: "Other",
+      };
+
+      const state = {
+        all: [],
+        activeCauses: new Set(["ai_governance", "animal_welfare"]),
+        minScore: 1,
+      };
+
+      async function load() {
+        try {
+          const res = await fetch("../data/scored.json");
+          state.all = await res.json();
+        } catch (e) {
+          state.all = [];
+          console.error("Failed to load scored.json:", e);
+        }
+        render();
+      }
+
+      function render() {
+        const list = document.getElementById("list");
+        const visible = state.all
+          .filter((c) => c.impact_score >= state.minScore)
+          .filter((c) => (c.cause_areas || []).some((t) => state.activeCauses.has(t)))
+          .sort((a, b) => b.impact_score - a.impact_score);
+
+        if (visible.length === 0) {
+          list.innerHTML = `<div class="empty">No consultations match the current filters.<br>
+            (If this is a fresh checkout, run <code>python -m pipeline.classify_and_score</code> first.)</div>`;
+          return;
+        }
+
+        list.innerHTML = visible.map(renderCard).join("");
+        list.querySelectorAll(".card").forEach((card) => {
+          card.addEventListener("click", () => card.classList.toggle("expanded"));
+        });
+      }
+
+      function renderCard(c) {
+        const tags = (c.cause_areas || [])
+          .map((t) => `<span class="tag ${t}">${CAUSE_LABEL[t] || t}</span>`)
+          .join("");
+        const dims = c.dimension_notes || {};
+        const dimRows = ["scope", "reversibility", "tractability", "urgency", "counterfactual"]
+          .map((k) => `<dt>${k}</dt><dd>${escape(dims[k] || "—")}</dd>`)
+          .join("");
+        return `
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3 class="card-title">${escape(c.title || "(no title)")}</h3>
+                <div class="card-meta">Deadline ${escape(c.deadline || "unknown")} · ${escape(c.source || "")}</div>
+                <div class="tags">${tags}</div>
+              </div>
+              <div class="score">${c.impact_score}</div>
+            </div>
+            <div class="details">
+              <h4>Rationale</h4>
+              <p>${escape(c.rationale || "")}</p>
+              <h4>Dimension notes</h4>
+              <dl class="dim-grid">${dimRows}</dl>
+              ${c.link ? `<h4>Source</h4><p><a href="${escape(c.link)}" target="_blank" rel="noopener">${escape(c.link)}</a></p>` : ""}
+            </div>
+          </div>
+        `;
+      }
+
+      function escape(s) {
+        return String(s).replace(/[&<>"']/g, (m) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+        }[m]));
+      }
+
+      // Wire up controls
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const cause = chip.dataset.cause;
+          if (state.activeCauses.has(cause)) state.activeCauses.delete(cause);
+          else state.activeCauses.add(cause);
+          chip.classList.toggle("active");
+          render();
+        });
+      });
+      const minScore = document.getElementById("min-score");
+      const minScoreValue = document.getElementById("min-score-value");
+      minScore.addEventListener("input", () => {
+        state.minScore = parseInt(minScore.value, 10);
+        minScoreValue.textContent = minScore.value;
+        render();
+      });
+
+      load();
+    </script>
+  </body>
+</html>
