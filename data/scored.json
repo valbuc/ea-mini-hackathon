@@ -1,286 +1,386 @@
 [
   {
-    "id": "placeholder-001",
-    "title": "[PLACEHOLDER] Delegated act on evaluation methodology for general-purpose AI models under the AI Act",
-    "summary": "Specifies the technical standards, benchmarks and protocols that providers of general-purpose AI models must follow when carrying out capability and systemic-risk evaluations required by Article 55 of the AI Act, including red-teaming requirements and reporting templates.",
-    "deadline": "2026-06-15",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
+    "id": "16238",
+    "title": "Revision of the Maritime Spatial Planning Directive/the Ocean Act",
+    "summary": "",
+    "deadline": "2026-07-16",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/16238",
     "cause_areas": [
-      "ai_governance",
-      "existential_catastrophic_risk",
-      "longtermism"
+      "other"
     ],
-    "impact_score": 3.6,
-    "rationale": "This delegated act sets binding evaluation methodology for general-purpose AI models under Article 55 of the AI Act — a foundational technical rule for frontier-AI safety governance with long-term lock-in. Safety-focused technical input at this stage is disproportionately influential relative to the heavy industry response expected. The combination of x-risk relevance, durability, and an open technical design space makes it a high-leverage target for EA-aligned experts.",
+    "impact_score": 2.2,
+    "rationale": "The Maritime Spatial Planning Directive revision (part of the EU Ocean Act) governs how member states zone and plan uses of marine space — fisheries, shipping, energy, conservation. While there could be marginal animal welfare or climate angles, the directive is fundamentally a spatial-planning instrument and EA-aligned cause areas are not substantively engaged. Without further specifics suggesting welfare or catastrophic-risk provisions, this falls in 'other'.",
     "dimensions": {
       "scope": {
-        "score": 5,
-        "note": "Governs evaluation of all GPAI models placed on the EU market and will likely anchor evaluation practice globally given the Brussels effect."
+        "score": 2,
+        "note": "Affects EU marine spatial planning across member states but is a procedural/coordination instrument with diffuse welfare impact."
       },
       "reversibility": {
-        "score": 4,
-        "note": "Delegated acts are formally revisable but the methodology, benchmarks, and reporting templates set here will entrench industry practice for many years."
+        "score": 2,
+        "note": "Standard directive revision, revisable through normal legislative cycles."
       },
       "tractability": {
-        "score": 3,
-        "note": "Mid-stage consultation on technical implementation — high-level direction is fixed by the AI Act but specific protocols, thresholds, and red-teaming requirements remain genuinely open."
+        "score": 4,
+        "note": "Early-stage call for evidence with deadline well in the future, framing still movable."
       },
       "urgency": {
-        "score": 2,
-        "note": "Deadline 2026-06-15 is roughly 6+ months out, leaving ample time but no immediate pressure to respond."
+        "score": 1,
+        "note": "Deadline ~8 months out (2026-07-16); no time pressure."
       },
       "counterfactual": {
-        "score": 4,
-        "note": "Industry and major labs will submit heavily; independent AI safety and evaluation-focused technical voices remain comparatively under-represented."
+        "score": 2,
+        "note": "Marine NGOs and industry will respond heavily; EA-aligned marginal value is low absent a specific welfare hook."
       }
     }
   },
   {
-    "id": "placeholder-002",
-    "title": "[PLACEHOLDER] Revision of Council Directive 1999/74/EC on minimum standards for the protection of laying hens",
-    "summary": "Reviews cage-size minimums, enrichment requirements, stocking densities and the timeline for phasing out enriched cages across all EU member states. Considers extending welfare requirements to imported eggs.",
-    "deadline": "2026-05-30",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
+    "id": "16252",
+    "title": "Public Consultation for the EU Youth Strategy post-2027",
+    "summary": "The 2019-2027 EU Youth Strategy is coming to an end. The strategy supports social and civic engagement for young people. It also aims to improve policy decisions and their impact on young people. The aim of this public consultation is to gather views and suggestions to inform the European Commission’s proposals for the post-2027 EU Youth Strategy.",
+    "deadline": "2026-07-16",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/16252",
     "cause_areas": [
-      "animal_welfare"
+      "other"
     ],
-    "impact_score": 3.2,
-    "rationale": "This is a foundational revision of the EU's core laying-hen welfare directive, directly affecting hundreds of millions of hens annually and potentially extending welfare standards to imports. Animal welfare consultations on cage phase-outs are exactly where EA-aligned input has historically had outsized influence, and industry counter-lobbying is intense. The deadline is comfortably distant but the policy stakes are high.",
+    "impact_score": 2.2,
+    "rationale": "This consultation concerns the EU's general youth strategy on civic engagement and policy participation, which does not substantively map onto any EA cause area. While youth wellbeing is broadly relevant, the strategy is a generic policy framework rather than a mental-health or wellbeing-metrics initiative. EA-aligned engagement here would be low-leverage relative to other EU consultations.",
     "dimensions": {
       "scope": {
-        "score": 4,
-        "note": "Affects ~370 million laying hens in the EU annually plus potential spillover to import-supplying countries via the import provision."
+        "score": 2,
+        "note": "Affects EU youth policy coordination but is largely a soft framework with limited binding reach across ~80 million young Europeans."
       },
       "reversibility": {
-        "score": 3,
-        "note": "Directive revisions of this kind typically lock in for 10-20 years given the capital cycle of cage infrastructure."
+        "score": 2,
+        "note": "Strategies run on multi-year cycles and are routinely revisited every 7-8 years."
       },
       "tractability": {
         "score": 4,
-        "note": "Revision is genuinely open: cage phase-out timeline, stocking densities, and the novel import-equivalence question are all live design choices."
+        "note": "Early-stage pre-formulation consultation seeking input to shape Commission proposals, so framing is genuinely open."
       },
       "urgency": {
-        "score": 2,
-        "note": "Deadline ~6 months away, leaving ample time but no immediate pressure to respond."
+        "score": 1,
+        "note": "Deadline is roughly 8 months out, well beyond the actionable window."
       },
       "counterfactual": {
-        "score": 3,
-        "note": "Major animal welfare NGOs (CIWF, Eurogroup) will engage heavily, but industry submissions typically outnumber welfare voices and additional expert input on import-equivalence design is valuable."
+        "score": 2,
+        "note": "Youth NGOs and civil society organisations will respond in large numbers, leaving little marginal value for an additional EA submission."
       }
     }
   },
   {
-    "id": "placeholder-003",
-    "title": "[PLACEHOLDER] Implementing regulation on transparency obligations for deployers of high-risk AI systems",
-    "summary": "Sets the format, content and frequency of transparency reports that deployers of high-risk AI systems must publish, including model cards, evaluation results and incident logs. Open consultation; final rules expected late 2026.",
-    "deadline": "2026-07-12",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
-    "cause_areas": [
-      "ai_governance"
-    ],
-    "impact_score": 3.4,
-    "rationale": "This implementing regulation defines the transparency reporting regime for deployers of high-risk AI systems under the AI Act — a sectoral but cross-cutting governance rule covering many high-stakes domains. It is squarely AI governance; it does not substantively address frontier/GPAI safety or x-risk, so we tag only ai_governance. Good independent technical input on disclosure formats can meaningfully improve the regime.",
-    "dimensions": {
-      "scope": {
-        "score": 4,
-        "note": "Transparency rules will apply to all deployers of high-risk AI across the EU, shaping accountability in employment, education, biometrics, critical infrastructure and more."
-      },
-      "reversibility": {
-        "score": 3,
-        "note": "Implementing acts can be revised, but reporting templates and conventions tend to entrench industry practice for years."
-      },
-      "tractability": {
-        "score": 4,
-        "note": "Open consultation framed as still-formative on format, content and frequency — concrete drafting suggestions can land."
-      },
-      "urgency": {
-        "score": 2,
-        "note": "Deadline is roughly 4-6 months out (relative to the late-2026 finalisation), giving ample time without immediate pressure."
-      },
-      "counterfactual": {
-        "score": 4,
-        "note": "Deployer industry and large vendors will dominate submissions; civil-society and safety-oriented voices on disclosure design are typically under-represented."
-      }
-    }
-  },
-  {
-    "id": "placeholder-004",
-    "title": "[PLACEHOLDER] Review of Council Regulation (EC) No 1/2005 on the protection of animals during transport",
-    "summary": "Considers maximum journey times, temperature thresholds, ventilation standards and whether long-distance live exports outside the EU should be phased out. Draws on the EFSA scientific opinion published in 2023.",
-    "deadline": "2026-05-20",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
-    "cause_areas": [
-      "animal_welfare"
-    ],
-    "impact_score": 3.0,
-    "rationale": "This is a major revision of the EU's core animal transport regulation, directly addressing journey times, conditions, and the contentious question of long-distance live exports — affecting hundreds of millions of farmed animals annually. Animal welfare advocates have substantial but not overwhelming presence on transport policy, and specific technical provisions remain genuinely open at this stage of the review.",
-    "dimensions": {
-      "scope": {
-        "score": 4,
-        "note": "The regulation governs transport of hundreds of millions of farmed animals per year across the EU and to third countries, with deep welfare implications per animal."
-      },
-      "reversibility": {
-        "score": 3,
-        "note": "A foundational sectoral regulation that, once revised, will anchor transport practice for many years before another full review."
-      },
-      "tractability": {
-        "score": 3,
-        "note": "Core questions like live export phase-out and journey-time caps are genuinely contested and open to influence at this review stage."
-      },
-      "urgency": {
-        "score": 2,
-        "note": "Deadline is roughly 6 months out, leaving ample time but no immediate pressure to act."
-      },
-      "counterfactual": {
-        "score": 3,
-        "note": "Established animal welfare NGOs (Eurogroup for Animals, CIWF) will respond strongly, but additional thoughtful submissions — especially with EA-aligned welfare-range reasoning — still add marginal value against heavy industry pushback."
-      }
-    }
-  },
-  {
-    "id": "placeholder-005",
-    "title": "[PLACEHOLDER] Update of the EU eIDAS regulation on electronic identification and trust services",
-    "summary": "Refines technical standards for the European Digital Identity Wallet, including cross-border interoperability and revocation mechanisms. Targeted at digital identity providers and member-state authorities.",
-    "deadline": "2026-06-01",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
+    "id": "14619",
+    "title": "Public consultation on&#xa0;Evaluation of Council Directive 2011/70/Euratom and Council Directive 2006/117/Euratom",
+    "summary": "",
+    "deadline": "2026-06-19",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/14619",
     "cause_areas": [
       "other"
     ],
     "impact_score": 2.4,
-    "rationale": "This consultation concerns technical standards for the EU Digital Identity Wallet under eIDAS — a digital infrastructure / single-market topic without substantive overlap with EA cause areas. While digital identity has implications for privacy and civil liberties, it does not map onto AI governance, x-risk, animal welfare, or other priority areas in the taxonomy.",
+    "rationale": "This consultation evaluates two Euratom directives on the management of spent fuel/radioactive waste and shipments of radioactive waste — a technical nuclear-safety and waste-management framework. It does not substantively address nuclear weapons, proliferation, or catastrophic risk, and is best classified as 'other'. Civil radioactive-waste governance is important but outside the EA priority cause areas as defined here.",
     "dimensions": {
       "scope": {
-        "score": 3,
-        "note": "Affects digital identity infrastructure used by hundreds of millions of EU citizens, but the welfare-relevant impact is diffuse."
+        "score": 2,
+        "note": "Affects radioactive waste management practices across EU member states — meaningful but a narrow technical domain with limited direct welfare impact."
       },
       "reversibility": {
-        "score": 3,
-        "note": "Technical standards for foundational digital ID infrastructure carry inertia but can be amended through normal regulatory updates."
+        "score": 2,
+        "note": "Standard directive evaluation cycle; findings feed into a revisable legislative review process."
       },
       "tractability": {
-        "score": 2,
-        "note": "Late-stage refinement of technical standards where the overall framework and direction are already set."
+        "score": 4,
+        "note": "Evaluation-stage consultation, so framing of problems and gaps is still genuinely open to input."
       },
       "urgency": {
         "score": 2,
-        "note": "Deadline is roughly 5-6 months out, providing ample time but no near-term pressure."
+        "note": "Deadline ~7-8 months out, leaving ample time and little immediate pressure."
       },
       "counterfactual": {
         "score": 2,
-        "note": "Digital identity providers, civil liberties NGOs, and member-state authorities will respond heavily; marginal value of an EA-aligned submission is low."
+        "note": "Nuclear industry, regulators, and established NGOs routinely engage on Euratom waste directives; marginal value of an EA-aligned submission is low."
       }
     }
   },
   {
-    "id": "placeholder-006",
-    "title": "[PLACEHOLDER] Strengthening the EU pandemic preparedness framework — call for evidence on engineered pathogen risk",
-    "summary": "Assesses the EU's preparedness for engineered pandemic pathogens, including DNA synthesis screening, lab biosafety oversight, dual-use research-of-concern policy, and the role of the Health Emergency Preparedness and Response Authority (HERA). Aims to inform a 2027 legislative proposal.",
-    "deadline": "2026-05-10",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
-    "cause_areas": [
-      "existential_catastrophic_risk",
-      "global_catastrophic_risks",
-      "longtermism"
-    ],
-    "impact_score": 4.0,
-    "rationale": "This call for evidence directly addresses engineered pandemic pathogen risk — a core EA biosecurity priority and a recognized x-risk driver — covering DNA synthesis screening, dual-use research oversight, and lab biosafety. As an early-stage consultation feeding a 2027 legislative proposal, it is unusually open to shaping framing and is likely under-attended by biosecurity-focused voices. The decisions will set foundational EU biosecurity architecture with long-horizon implications.",
-    "dimensions": {
-      "scope": {
-        "score": 5,
-        "note": "Engineered pandemic governance has civilization-scale stakes and the resulting EU framework would influence global biosecurity norms (e.g., synthesis screening standards)."
-      },
-      "reversibility": {
-        "score": 4,
-        "note": "A 2027 legislative proposal anchored on this evidence base would lock in EU biosecurity architecture for a decade or more."
-      },
-      "tractability": {
-        "score": 4,
-        "note": "Early-stage call for evidence informing a future legislative proposal — framing and scope of the eventual instrument are still genuinely movable."
-      },
-      "urgency": {
-        "score": 3,
-        "note": "Deadline is roughly 10-12 weeks out (assuming current date in early 2026), giving a comfortable window for a substantive response."
-      },
-      "counterfactual": {
-        "score": 4,
-        "note": "Biosecurity expertise on engineered-pathogen policy is thin in EU consultation processes; industry and generalist public-health actors will dominate without targeted EA-aligned input."
-      }
-    }
-  },
-  {
-    "id": "placeholder-007",
-    "title": "[PLACEHOLDER] Carbon Border Adjustment Mechanism (CBAM) — review of sectoral coverage and default values",
-    "summary": "Reviews the scope of CBAM, including potential extension to chemicals and polymers, the methodology for default emission values for non-reporting importers, and interaction with the EU ETS phase-out of free allowances.",
-    "deadline": "2026-06-22",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
+    "id": "17452",
+    "title": "Public consultation on the energy efficiency framework for the decade ahead",
+    "summary": "",
+    "deadline": "2026-06-12",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/17452",
     "cause_areas": [
       "climate_change_mitigation"
     ],
-    "impact_score": 2.6,
-    "rationale": "This consultation reviews CBAM's sectoral scope and methodology, a core EU climate policy instrument that affects emissions from imports into the single market. While substantively important for climate mitigation, it is heavily lobbied by industry and well-covered by mainstream climate NGOs, lowering the marginal value of an EA-aligned submission. The technical framing (default values, chemicals/polymers extension) is open but mid-stage.",
+    "impact_score": 2.8,
+    "rationale": "This consultation concerns the EU's energy efficiency framework for the next decade, a core climate mitigation policy lever affecting buildings, industry, and appliances across the EU. While the topic is important and has long-term implications, energy efficiency policy is heavily covered by mainstream environmental NGOs and industry, limiting the marginal value of an additional EA-aligned submission.",
     "dimensions": {
       "scope": {
         "score": 4,
-        "note": "CBAM shapes emissions accounting for major imported industrial sectors into the EU and influences global carbon pricing norms."
+        "note": "A decade-long EU-wide energy efficiency framework affects hundreds of millions of people and substantial GHG emissions trajectories."
       },
       "reversibility": {
         "score": 3,
-        "note": "Methodology and scope decisions create substantial inertia for industry compliance, though revisable through future reviews."
+        "note": "Framework regulations of this kind set durable direction but are revisable through subsequent reviews and recasts."
       },
       "tractability": {
-        "score": 3,
-        "note": "Mid-stage review with specific provisions (chemicals/polymers extension, default values) genuinely open to input."
+        "score": 4,
+        "note": "Early-stage consultation on the next decade's framework — overall framing and ambition level are still genuinely movable."
       },
       "urgency": {
         "score": 2,
-        "note": "Deadline is roughly 4-6 months away, allowing ample preparation time without immediate pressure."
+        "note": "Deadline is roughly 6+ months out (June 2026), so there is no near-term pressure to respond."
       },
       "counterfactual": {
         "score": 1,
-        "note": "Saturated topic — mainstream climate NGOs, think tanks, and industry will respond extensively regardless."
+        "note": "Energy efficiency is a saturated EU policy area with extensive coverage by climate NGOs, industry, and member states."
       }
     }
   },
   {
-    "id": "placeholder-008",
-    "title": "[PLACEHOLDER] Programming of the Global Gateway and EU development cooperation 2028-2034",
-    "summary": "Sets the priorities and indicative budget envelopes for EU development cooperation, including allocations across global health (malaria, TB, HIV, maternal health), humanitarian assistance, education, and infrastructure investment in low- and lower-middle-income countries.",
-    "deadline": "2026-05-25",
-    "source": "EU Have Your Say (placeholder data)",
-    "link": "https://have-your-say.ec.europa.eu/",
+    "id": "17453",
+    "title": "Public consultation on the renewable energy framework for the decade ahead",
+    "summary": "",
+    "deadline": "2026-06-12",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/17453",
     "cause_areas": [
-      "global_health_development",
-      "longtermism"
+      "climate_change_mitigation"
     ],
-    "impact_score": 4.0,
-    "rationale": "This consultation shapes the EU's development cooperation priorities and budget allocations for 2028-2034, directly affecting funding for high-impact global health interventions like malaria, TB, and maternal health in low-income countries. As a foundational seven-year programming cycle with multi-decade implications for global poverty reduction, it warrants the longtermism secondary tag. EA-aligned voices advocating for evidence-based, cost-effective health interventions are typically underrepresented relative to sectoral lobbies in development programming.",
+    "impact_score": 3.0,
+    "rationale": "This is a foundational EU consultation on the renewable energy framework for the next decade, directly relevant to climate change mitigation through grid decarbonisation and renewables deployment. While the topic is important and has multi-year lock-in, mainstream climate and energy NGOs as well as industry will respond heavily, reducing the counterfactual value of an EA-aligned submission.",
     "dimensions": {
       "scope": {
-        "score": 5,
-        "note": "A seven-year EU development envelope affects hundreds of millions of people in low- and lower-middle-income countries through health, humanitarian, and infrastructure funding."
+        "score": 4,
+        "note": "A decade-long renewable energy framework affects EU-wide emissions trajectories and energy systems for hundreds of millions of people."
       },
       "reversibility": {
         "score": 4,
-        "note": "Multi-year programming framework locks in priorities and budget envelopes for 2028-2034 with substantial inertia once adopted."
+        "note": "A 10-year framework locks in investment signals and infrastructure decisions that are hard to reverse mid-cycle."
       },
       "tractability": {
         "score": 4,
-        "note": "Early-stage programming consultation where priority-setting and allocation framings are still genuinely movable."
+        "note": "Early-stage public consultation on the framework's direction, so framing and priorities are still genuinely movable."
       },
       "urgency": {
-        "score": 3,
-        "note": "Deadline appears to be roughly 6+ months out, providing a comfortable window to prepare a substantive submission."
+        "score": 2,
+        "note": "Deadline is roughly 6+ months away (June 2026), giving ample time but no immediate pressure."
       },
       "counterfactual": {
+        "score": 1,
+        "note": "Mainstream climate and energy NGOs plus industry will saturate this consultation, leaving little marginal value for an additional EA-aligned response."
+      }
+    }
+  },
+  {
+    "id": "14792",
+    "title": "Electronic invoicing – revision of EU rules",
+    "summary": "",
+    "deadline": "2026-06-10",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/14792",
+    "cause_areas": [
+      "other"
+    ],
+    "impact_score": 2.0,
+    "rationale": "This consultation concerns the revision of EU rules on electronic invoicing, a technical single-market and tax-administration matter with no substantive connection to any EA cause area. It is the kind of routine business-process regulation that falls squarely under 'other'.",
+    "dimensions": {
+      "scope": {
+        "score": 2,
+        "note": "Affects businesses and public authorities across the EU using e-invoicing, but the welfare impact per affected entity is small and indirect."
+      },
+      "reversibility": {
+        "score": 2,
+        "note": "Standard regulatory revision; can be revisited in normal legislative cycles."
+      },
+      "tractability": {
+        "score": 3,
+        "note": "Mid-stage revision where technical provisions remain open, though EA-relevant levers are essentially absent."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline is roughly 6 months away, leaving ample time but no immediate pressure."
+      },
+      "counterfactual": {
+        "score": 1,
+        "note": "Industry, tax practitioners, and accounting bodies will heavily dominate this consultation; an EA-aligned submission adds essentially no marginal value."
+      }
+    }
+  },
+  {
+    "id": "14809",
+    "title": "Open Public Consultation on the Update of the Rules on Shareholder Rights",
+    "summary": "",
+    "deadline": "2026-05-06",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/14809",
+    "cause_areas": [
+      "other"
+    ],
+    "impact_score": 2.2,
+    "rationale": "This consultation concerns updating EU corporate governance rules on shareholder rights — a technical area of company law and capital markets policy with no substantive overlap with EA cause areas. While shareholder engagement can sometimes affect ESG or animal welfare outcomes indirectly, the consultation framing is general corporate governance, which falls under 'other'.",
+    "dimensions": {
+      "scope": {
+        "score": 2,
+        "note": "Affects listed companies and their shareholders across the EU — meaningful but a defined corporate-governance population."
+      },
+      "reversibility": {
+        "score": 2,
+        "note": "Standard directive update, revisable through normal legislative cycles every several years."
+      },
+      "tractability": {
         "score": 4,
-        "note": "Development programming consultations are typically dominated by sectoral NGOs and industry; EA-aligned voices pushing cost-effectiveness and GiveWell-style priorities are rare."
+        "note": "Open public consultation at an early stage on rule update; framing and scope still movable."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline roughly 5-6 months away, leaving ample time with no immediate pressure."
+      },
+      "counterfactual": {
+        "score": 1,
+        "note": "Corporate governance consultations attract heavy response from industry, investor associations, and civil-society groups; EA-aligned input is not the relevant gap here."
+      }
+    }
+  },
+  {
+    "id": "15752",
+    "title": "Audiovisual media services – evaluation and update of EU rules",
+    "summary": "",
+    "deadline": "2026-05-01",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/15752",
+    "cause_areas": [
+      "other"
+    ],
+    "impact_score": 2.6,
+    "rationale": "This consultation concerns the EU's Audiovisual Media Services Directive — a sectoral media-regulation framework covering broadcasting, video-on-demand, and online video platforms. It does not substantively engage any EA cause area; while AI-generated content or election integrity could be peripheral, the core subject is media policy. Marginal EA value of responding is low.",
+    "dimensions": {
+      "scope": {
+        "score": 3,
+        "note": "AVMSD governs media services across the EU affecting hundreds of millions of viewers, but the welfare stakes per person are modest."
+      },
+      "reversibility": {
+        "score": 2,
+        "note": "Standard directive evaluation cycle; the AVMSD has been revised before and will be revisable again."
+      },
+      "tractability": {
+        "score": 4,
+        "note": "This is an early-stage evaluation/call-for-evidence on whether and how to update the rules, so framing is still open."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline is roughly 5-6 months out, leaving ample time and little pressure to act now."
+      },
+      "counterfactual": {
+        "score": 2,
+        "note": "Media-policy consultations attract heavy engagement from broadcasters, platforms, and civil-society media NGOs; an EA-aligned submission adds little marginal value."
+      }
+    }
+  },
+  {
+    "id": "16692",
+    "title": "Revision of national targets and flexibilities in the EU climate policy framework after 2030",
+    "summary": "",
+    "deadline": "2026-05-04",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/16692",
+    "cause_areas": [
+      "climate_change_mitigation"
+    ],
+    "impact_score": 2.8,
+    "rationale": "This consultation revises national emissions targets and flexibility mechanisms in the EU's post-2030 climate framework, a foundational decision shaping member-state decarbonisation pathways for the next decade. While the topic is highly important, climate policy is a saturated advocacy space with many well-resourced NGOs already engaged, lowering the marginal counterfactual value of an EA-aligned submission. The deadline is several months out, giving ample time to prepare a quality response.",
+    "dimensions": {
+      "scope": {
+        "score": 4,
+        "note": "Sets binding national targets and flexibility rules affecting emissions across all 27 member states for the post-2030 period."
+      },
+      "reversibility": {
+        "score": 3,
+        "note": "Post-2030 framework will be revisable in subsequent climate packages but carries substantial inertia and locks in member-state planning."
+      },
+      "tractability": {
+        "score": 4,
+        "note": "Early-stage consultation on the architecture of national targets and flexibilities — framing and design choices are still genuinely open."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline is roughly 5-6 months out, leaving plenty of time but no immediate pressure."
+      },
+      "counterfactual": {
+        "score": 1,
+        "note": "Mainstream climate NGOs and industry will respond heavily; an additional EA-aligned submission has limited marginal value."
+      }
+    }
+  },
+  {
+    "id": "16632",
+    "title": "International Carbon Credits",
+    "summary": "",
+    "deadline": "2026-05-04",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/16632",
+    "cause_areas": [
+      "climate_change_mitigation"
+    ],
+    "impact_score": 2.8,
+    "rationale": "This initiative concerns the EU's framework for international carbon credits, likely tied to meeting climate targets through credits from outside the EU. It falls squarely within climate change mitigation policy, addressing how offsets and international credits integrate with EU emissions accounting. Climate is a well-resourced advocacy space, so EA marginal value is modest.",
+    "dimensions": {
+      "scope": {
+        "score": 3,
+        "note": "International carbon credit rules affect EU-wide climate accounting and potentially significant emission flows, but their real-world climate impact depends heavily on integrity rules."
+      },
+      "reversibility": {
+        "score": 3,
+        "note": "Carbon credit frameworks tend to set durable rules of the game for offset markets but are revisable through periodic climate-policy reviews."
+      },
+      "tractability": {
+        "score": 4,
+        "note": "Appears to be an early-stage initiative on whether and how to integrate international credits, with framing still genuinely open."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline is roughly 5+ months out, providing ample time before action is required."
+      },
+      "counterfactual": {
+        "score": 2,
+        "note": "Mainstream climate NGOs and industry groups (e.g., Carbon Market Watch) reliably engage on carbon credit consultations, limiting marginal EA value."
+      }
+    }
+  },
+  {
+    "id": "15072",
+    "title": "Open Public consultation on a Construction Services Act proposal",
+    "summary": "",
+    "deadline": "2026-05-01",
+    "source": "EU Have Your Say",
+    "link": "https://have-your-say.ec.europa.eu/initiatives/15072",
+    "cause_areas": [
+      "other"
+    ],
+    "impact_score": 2.4,
+    "rationale": "This is an EU consultation on a Construction Services Act, addressing single-market regulation of the construction sector. It does not substantively touch any EA-priority cause area such as AI governance, animal welfare, global health, or catastrophic risks.",
+    "dimensions": {
+      "scope": {
+        "score": 2,
+        "note": "Sector-specific rule affecting construction services across the EU single market, with limited direct welfare impact."
+      },
+      "reversibility": {
+        "score": 2,
+        "note": "Standard EU regulation, revisable through normal legislative review cycles."
+      },
+      "tractability": {
+        "score": 4,
+        "note": "Open public consultation at proposal stage suggests framing is still movable."
+      },
+      "urgency": {
+        "score": 2,
+        "note": "Deadline approximately 6 months away (May 2026), allowing ample time but little pressure."
+      },
+      "counterfactual": {
+        "score": 2,
+        "note": "Construction industry stakeholders will dominate, but this is not an EA-relevant gap worth filling."
       }
     }
   }

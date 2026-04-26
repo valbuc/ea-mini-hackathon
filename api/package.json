@@ -1,0 +1,10 @@
+{
+  "name": "impactfeed-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ImpactFeed Vercel serverless functions.",
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.0"
+  }
+}

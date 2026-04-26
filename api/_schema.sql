@@ -1,5 +1,5 @@
--- ImpactFeed — Vercel Postgres schema
--- Run once via the Vercel dashboard → Storage → your Postgres → "Query" tab.
+-- ImpactFeed — Postgres schema (Neon, via Vercel Storage marketplace)
+-- Run once: Vercel dashboard → Storage → your Neon Postgres → "Query" tab.
 
 CREATE TABLE IF NOT EXISTS subscribers (
   id          SERIAL PRIMARY KEY,

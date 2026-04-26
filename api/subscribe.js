@@ -1,10 +1,10 @@
 // Vercel serverless function — POST /api/subscribe
 //
 // Persists a subscriber (email, optional name, current filter preferences)
-// to Vercel Postgres. Existing emails are upserted so a user can refine
-// their preferences by re-submitting the form.
+// to a Neon Postgres database. Existing emails are upserted so a user can
+// refine their preferences by re-submitting the form.
 //
-// Schema (run once via the Vercel dashboard SQL editor):
+// Schema (run once via the Neon SQL editor — see api/_schema.sql):
 //
 //   CREATE TABLE IF NOT EXISTS subscribers (
 //     id          SERIAL PRIMARY KEY,
@@ -14,16 +14,25 @@
 //     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 //     updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 //   );
-//   CREATE INDEX IF NOT EXISTS subscribers_email_idx ON subscribers(email);
 
-import { sql } from "@vercel/postgres";
+import { neon } from "@neondatabase/serverless";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Vercel's Neon integration injects DATABASE_URL; older Vercel Postgres
+// projects also expose POSTGRES_URL. Fall back so either flow works.
+const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+const sql = connectionString ? neon(connectionString) : null;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  if (!sql) {
+    console.error("No DATABASE_URL / POSTGRES_URL env var configured.");
+    return res.status(500).json({ error: "Database not configured" });
   }
 
   let body = req.body;
