@@ -105,14 +105,50 @@ One Claude call per consultation: input is title + summary + cause tags + rubric
 
 ### 4.6 Tech stack
 
-| Layer | v0 (1 hour) | Post-hackathon |
+| Layer | v0 (shipped) | Post-hackathon |
 |---|---|---|
-| Language | Python | Python |
-| Storage | `consultations.json` + `scored.json` (committed to repo) | SQLite, then Postgres at scale |
-| Scraper schedule | Run once locally before demo | GitHub Actions cron, daily |
-| Frontend | Single static HTML page or one-file Astro project | Astro on Vercel |
-| Hosting | `localhost`, or `vercel --prod` if 5 min spare | Vercel preview URL → custom domain later |
-| "Subscribe" | Tally form embed (intent capture only) | Resend (better free tier than Buttondown, dev-friendly), weekly Monday digest |
+| Pipeline | Python + Anthropic SDK (Claude Opus 4.7), Pydantic structured output, prompt caching | Same |
+| Consultation store | JSON (`data/scored.json`, committed) | Postgres |
+| Scraper schedule | Run locally on demand | GitHub Actions cron, daily |
+| Frontend | Single static `index.html` + vanilla JS, Inter font | Astro (post-v0) |
+| Subscriber store | **Vercel Postgres** (`subscribers` table, see `api/_schema.sql`) | Same |
+| Subscribe API | Vercel serverless function `api/subscribe.js` | Same + send-digest cron |
+| Hosting | **Vercel** (static + functions) | Same + custom domain |
+
+---
+
+### 4.6.1 Local development
+
+```bash
+# 1. Set up Python deps + .env (one-time)
+pip install -r requirements.txt
+cp .env.example .env  # then fill in ANTHROPIC_API_KEY
+
+# 2. Score consultations (re-run whenever data/consultations.json changes)
+python -m pipeline.classify_and_score   # writes data/scored.json
+
+# 3a. Static-only preview (no API route)
+python -m http.server 8000              # open http://localhost:8000/
+
+# 3b. Full local stack (static + /api/subscribe), requires the Vercel CLI
+npx vercel dev                          # open http://localhost:3000/
+```
+
+For 3b you also need `POSTGRES_URL` etc. in your local environment — easiest is `npx vercel link` + `npx vercel env pull .env.local` once the project is deployed.
+
+### 4.6.2 Deploying to Vercel
+
+One-time setup, ~5 minutes:
+
+1. **Push to GitHub** (already done if you're reading this on github.com).
+2. Go to [vercel.com/new](https://vercel.com/new), **Import** this repo. Framework preset: *Other*. Build settings: leave default. Click *Deploy*.
+3. In the project dashboard → **Storage** → **Create database** → **Postgres** → choose a region close to you → *Connect*. Vercel auto-injects `POSTGRES_URL` and friends as env vars.
+4. Open the Postgres database → **Query** tab → paste the contents of `api/_schema.sql` and run it. (One `CREATE TABLE`, one `CREATE INDEX`.)
+5. Trigger a fresh deploy (Deployments → … → *Redeploy*) so the functions pick up the new env vars.
+
+After that, every push to `main` redeploys automatically, including the `/api/subscribe` function. The static frontend, the scored consultations JSON, and the subscribe API all live in one Vercel project.
+
+To inspect subscribers: Vercel dashboard → Postgres → Query → `SELECT * FROM subscribers ORDER BY created_at DESC;`
 
 ### 4.7 60-minute task split (3 people)
 
@@ -128,7 +164,7 @@ One Claude call per consultation: input is title + summary + cause tags + rubric
 - Expert outreach bot and any automated cold contact
 - Other jurisdictions: national EU member-state portals, UK, US federal rulemaking, etc. (post-v0)
 - SQLite / database (JSON suffices for ~tens of consultations)
-- Real email sending — Tally captures intent (v1 = Resend, weekly Monday digest)
+- Real email sending — subscriptions are persisted to Postgres, but no digest is mailed yet (v1 = Resend, weekly Monday digest)
 - Cron / hosting for the scraper (v1 = GitHub Action)
 - Multilingual (EU consultations are normally available in English)
 - "Did my comment matter?" — scrape final adopted text, LLM-map which submitted themes survived (v3)

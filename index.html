@@ -662,7 +662,7 @@
               <input type="text" id="name" placeholder="Jane Doe" />
             </div>
             <button type="submit">Subscribe to weekly digest →</button>
-            <span class="subscribe-note">Form is a preview — no email is actually sent in v0.</span>
+            <span class="subscribe-note">We store your address securely and use it only for the weekly digest.</span>
           </form>
         </div>
       </section>
@@ -977,19 +977,50 @@
           </div>`;
       }
 
-      // ───── Subscribe form (preview only) ─────
+      // ───── Subscribe form ─────
       function setupSubscribeForm() {
         const form = document.getElementById("subscribe-form");
         const btn = form.querySelector("button");
-        form.addEventListener("submit", (e) => {
+        const note = form.querySelector(".subscribe-note");
+        const originalNote = note.textContent;
+
+        form.addEventListener("submit", async (e) => {
           e.preventDefault();
           const email = document.getElementById("email").value.trim();
-          if (!email) {
+          const name = document.getElementById("name").value.trim();
+          if (!email || !email.includes("@")) {
             document.getElementById("email").focus();
             return;
           }
+
           btn.disabled = true;
-          btn.textContent = "✓ Subscribed (preview only)";
+          btn.textContent = "Subscribing…";
+          note.textContent = "";
+
+          const preferences = {
+            causes: [...state.activeCauses],
+            min_overall: state.minOverall,
+            min_dim: { ...state.minDim },
+          };
+
+          try {
+            const res = await fetch("/api/subscribe", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, name: name || null, preferences }),
+            });
+            if (!res.ok) {
+              const body = await res.json().catch(() => ({}));
+              throw new Error(body.error || `HTTP ${res.status}`);
+            }
+            btn.textContent = "✓ Subscribed";
+            note.textContent = "We'll email you a weekly digest matching your preferences.";
+          } catch (err) {
+            btn.disabled = false;
+            btn.textContent = "Subscribe to weekly digest →";
+            note.textContent = `Couldn't subscribe (${err.message}). ${originalNote}`;
+            console.error("Subscribe failed:", err);
+          }
         });
       }
 
@@ -1011,7 +1042,7 @@
       renderSummary();
       (async function load() {
         try {
-          const res = await fetch("../data/scored.json");
+          const res = await fetch("data/scored.json");
           state.all = await res.json();
         } catch (e) {
           console.error("Failed to load scored.json:", e);

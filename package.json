@@ -1,0 +1,14 @@
+{
+  "name": "impactfeed",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ImpactFeed — EU public consultations classified by EA cause area and scored for impact.",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0"
+  }
+}
