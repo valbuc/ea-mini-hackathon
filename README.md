@@ -1,6 +1,6 @@
 # ImpactFeed
 
-> Discoverable, EA-aware tracking of EU and national public consultations, with cause-area filtering and impact scoring so individuals and experts can act where it counts most.
+> Discoverable, EA-aware tracking of EU public consultations (extensible to other jurisdictions), with cause-area filtering and impact scoring so individuals and experts can act where it counts most.
 
 Built for the **EAGx Stockholm 2026 mini hackathon** — 1 hour, 3 people.
 
@@ -41,7 +41,7 @@ There are useful tools in this space, but each is built for a different audience
 | [PolicyPulse (academic)](https://arxiv.org/html/2505.23994v1) | ❌ (analyses discussions) | ❌ | ❌ | ❌ | ❌ (researcher-side) | ✅ |
 | Quorum / Plural Policy (commercial) | ✅ broad | ✅ | ❌ | ❌ | ❌ (lobbyist-side) | ❌ |
 | [EA Forum — Policy topic](https://forum.effectivealtruism.org/topics/policy) | Ad-hoc, occasional | Partial | ✅ | ❌ | ✅ | ✅ |
-| **ImpactFeed (this project)** | ✅ EU at MVP, UK v2 | ✅ (extensible) | ✅ | ✅ | ✅ | ✅ |
+| **ImpactFeed (this project)** | ✅ EU at MVP, multi-jurisdiction post-v0 | ✅ (extensible) | ✅ | ✅ | ✅ | ✅ |
 
 The wedge: **discovery + EA cause classification + opportunity score + opt-in alerts**, citizen-and-expert-facing, open source.
 
@@ -51,7 +51,7 @@ The wedge: **discovery + EA cause classification + opportunity score + opt-in al
 
 Build a tool that:
 
-1. **Crawls** the websites and feeds of the EU Commission ("Have Your Say"), and later UK gov.uk, for active consultations.
+1. **Crawls** the websites and feeds of the EU Commission ("Have Your Say") for active consultations. Designed to extend to other jurisdictions (national EU member-state portals, UK, US federal rulemaking, etc.) post-v0.
 2. **Aggregates** the results into a structured store.
 3. **Classifies** each consultation against a borrowed [80,000 Hours / EA Forum](https://forum.effectivealtruism.org/topics/policy) cause-area taxonomy (multi-label).
 4. **Scores** "opportunity for impact" using an LLM judgment against an explicit rubric — and **shows the reasoning** so users can override it.
@@ -75,8 +75,8 @@ EA-aligned individuals and individual experts (e.g. a biosecurity researcher who
 
 Two only, multi-label:
 
-- **AI governance & safety** — active EU AI Act delegated regs and UK AISI / Frontier AI Taskforce pipelines provide steady consultation flow.
-- **Animal welfare / factory farming** — EU and UK regularly consult on cage bans, welfare labelling, transport rules.
+- **AI governance & safety** — active EU AI Act delegated and implementing acts provide steady consultation flow.
+- **Animal welfare / factory farming** — the EU regularly consults on cage bans, welfare labelling, transport rules.
 
 Anything else → **Other** bucket, not surfaced in alerts.
 
@@ -87,7 +87,7 @@ Anything else → **Other** bucket, not surfaced in alerts.
 - **Plan A:** quick BeautifulSoup scrape of the open-consultations listing.
 - **Plan B (fallback):** if the portal is JS-heavy / fights us inside 15 minutes, hand-curate ~10 real open consultations into `consultations.json`. The pipeline + UI is the demo, not the scraper.
 
-UK source is v1.
+Other jurisdictions (national EU member-state portals, UK, US federal rulemaking, etc.) are post-v0.
 
 ### 4.5 Impact scoring
 
@@ -126,7 +126,7 @@ One Claude call per consultation: input is title + summary + cause tags + rubric
 ### 4.8 Out of scope for v0 (deferred deliberately)
 
 - Expert outreach bot and any automated cold contact
-- UK and other national sources (v1)
+- Other jurisdictions: national EU member-state portals, UK, US federal rulemaking, etc. (post-v0)
 - SQLite / database (JSON suffices for ~tens of consultations)
 - Real email sending — Tally captures intent (v1 = Resend, weekly Monday digest)
 - Cron / hosting for the scraper (v1 = GitHub Action)

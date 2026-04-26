@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "placeholder-001",
+    "title": "[PLACEHOLDER] Delegated act on evaluation methodology for general-purpose AI models under the AI Act",
+    "summary": "Specifies the technical standards, benchmarks and protocols that providers of general-purpose AI models must follow when carrying out capability and systemic-risk evaluations required by Article 55 of the AI Act, including red-teaming requirements and reporting templates.",
+    "deadline": "2026-06-15",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/",
+    "cause_areas": [
+      "ai_governance"
+    ],
+    "impact_score": 5,
+    "rationale": "This delegated act will codify the binding evaluation methodology for general-purpose AI models under the AI Act — a foundational, hard-to-reverse rule that will anchor frontier-model safety practice across the EU and likely beyond. Safety-focused technical input at this stage is rare relative to industry response, making it a top-tier opportunity for an EA-aligned expert to contribute.",
+    "dimension_notes": {
+      "scope": "Sets evaluation standards for all GPAI models on the EU market, with global spillover via de facto standardisation.",
+      "reversibility": "Formally amendable but methodological choices will entrench industry practice and tooling for years.",
+      "tractability": "Mid-stage technical consultation: overall structure is set but benchmarks, thresholds and red-teaming protocols are genuinely open.",
+      "urgency": "Deadline 2026-06-15 — likely several months out; comfortable window for a substantive submission, no immediate pressure.",
+      "counterfactual": "Frontier labs and industry associations will respond in force; independent safety and evaluation experts are comparatively under-represented."
+    }
+  },
+  {
+    "id": "placeholder-002",
+    "title": "[PLACEHOLDER] Revision of Council Directive 1999/74/EC on minimum standards for the protection of laying hens",
+    "summary": "Reviews cage-size minimums, enrichment requirements, stocking densities and the timeline for phasing out enriched cages across all EU member states. Considers extending welfare requirements to imported eggs.",
+    "deadline": "2026-05-30",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/",
+    "cause_areas": [
+      "animal_welfare"
+    ],
+    "impact_score": 4,
+    "rationale": "This revision directly governs the welfare conditions of roughly 350 million laying hens across the EU and could phase out enriched cages — a top-priority animal welfare lever. The consultation is open on substantive provisions and import-equivalence rules, where EA-aligned input can meaningfully complement industry-heavy submissions, though the deadline is comfortably distant.",
+    "dimension_notes": {
+      "scope": "Affects ~350M EU laying hens annually plus potential reach to imported-egg supply chains, putting it in the high-impact animal welfare tier.",
+      "reversibility": "Directive revisions are revisable but typically lock in welfare standards for 10-20 years given the slow EU review cycle.",
+      "tractability": "Mid-stage revision with cage phase-out timeline and import equivalence genuinely open to influence.",
+      "urgency": "Deadline ~6 months out; ample time for a substantive response but no immediate pressure.",
+      "counterfactual": "Industry and producer associations will dominate; cage-free and EA-aligned animal welfare groups (e.g. CIWF, Open Wing Alliance) cover this but additional expert input still adds marginal value."
+    }
+  },
+  {
+    "id": "placeholder-003",
+    "title": "[PLACEHOLDER] Implementing regulation on transparency obligations for deployers of high-risk AI systems",
+    "summary": "Sets the format, content and frequency of transparency reports that deployers of high-risk AI systems must publish, including model cards, evaluation results and incident logs. Open consultation; final rules expected late 2026.",
+    "deadline": "2026-07-12",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/",
+    "cause_areas": [
+      "ai_governance"
+    ],
+    "impact_score": 4,
+    "rationale": "This implementing regulation will define the concrete transparency artefacts (model cards, evaluation disclosures, incident logs) that deployers of high-risk AI systems must publish under the AI Act — a foundational accountability mechanism where well-crafted technical input can meaningfully shape disclosure quality. Industry will dominate the response pool, so safety- and transparency-focused voices have outsized marginal value, though the deadline is far enough out that urgency is moderate.",
+    "dimension_notes": {
+      "scope": "Applies across all high-risk AI deployers in the EU, shaping public visibility into AI use in employment, education, critical infrastructure and more.",
+      "reversibility": "Implementing acts are revisable but reporting templates and norms tend to ossify quickly once industry tooling is built around them.",
+      "tractability": "Open mid-stage consultation on format and content — concrete provisions on what to disclose and how often are genuinely still open.",
+      "urgency": "Deadline roughly 4-6 months out (depending on current date); time for a substantive response but no immediate pressure.",
+      "counterfactual": "Industry and large deployers will respond heavily; civil-society and safety-focused technical input on transparency formats is typically under-represented."
+    }
+  },
+  {
+    "id": "placeholder-004",
+    "title": "[PLACEHOLDER] Review of Council Regulation (EC) No 1/2005 on the protection of animals during transport",
+    "summary": "Considers maximum journey times, temperature thresholds, ventilation standards and whether long-distance live exports outside the EU should be phased out. Draws on the EFSA scientific opinion published in 2023.",
+    "deadline": "2026-05-20",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/",
+    "cause_areas": [
+      "animal_welfare"
+    ],
+    "impact_score": 4,
+    "rationale": "This is a foundational revision of the EU's core live-animal transport regulation, affecting hundreds of millions of farm animals annually and potentially ending long-distance live exports — a top-tier farm animal welfare lever. The consultation is genuinely open on substantive questions (journey times, live exports) and EA-aligned animal advocacy groups will engage but industry counter-mobilisation is intense, so additional thoughtful technical submissions add real value.",
+    "dimension_notes": {
+      "scope": "Covers all live vertebrate transport across the EU and to third countries — hundreds of millions of animals per year, with severe welfare stakes during transport.",
+      "reversibility": "A revised Regulation will likely set the framework for 15+ years given how rarely this file is reopened; current rules date to 2005.",
+      "tractability": "Mid-stage review informed by EFSA's 2023 opinion; key choices (journey-time caps, live export phase-out) are genuinely contested and still open.",
+      "urgency": "Deadline is several months out, leaving comfortable time for a substantive evidence-based response but no immediate pressure.",
+      "counterfactual": "Major animal welfare NGOs (CIWF, Eurogroup) will respond, but industry submissions will heavily outnumber them; additional rigorous expert input is valuable."
+    }
+  },
+  {
+    "id": "placeholder-005",
+    "title": "[PLACEHOLDER] Update of the EU eIDAS regulation on electronic identification and trust services",
+    "summary": "Refines technical standards for the European Digital Identity Wallet, including cross-border interoperability and revocation mechanisms. Targeted at digital identity providers and member-state authorities.",
+    "deadline": "2026-06-01",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/",
+    "cause_areas": [
+      "other"
+    ],
+    "impact_score": 2,
+    "rationale": "This is a technical refinement of digital identity standards under eIDAS, primarily affecting digital identity providers and member-state authorities. While digital identity has broad societal implications, the consultation is narrowly scoped to interoperability and revocation mechanisms, not foundational governance, and EA-aligned priorities are only tangentially engaged.",
+    "dimension_notes": {
+      "scope": "Affects EU citizens using the Digital Identity Wallet, but the consultation is on technical interoperability rather than substantive policy direction.",
+      "reversibility": "Technical standards are revisable through normal regulatory updates and can be amended as the wallet ecosystem evolves.",
+      "tractability": "Late-stage technical consultation; major architectural decisions already made, only refinements open.",
+      "urgency": "Deadline ~6 months away, ample time but no immediate pressure.",
+      "counterfactual": "Industry digital identity providers and member-state authorities will dominate; few EA-aligned voices, but topic is also a poor fit for EA priorities."
+    }
+  }
+]
