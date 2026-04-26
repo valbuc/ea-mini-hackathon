@@ -38,5 +38,29 @@
     "deadline": "2026-06-01",
     "source": "EU Have Your Say (placeholder data)",
     "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-006",
+    "title": "[PLACEHOLDER] Strengthening the EU pandemic preparedness framework — call for evidence on engineered pathogen risk",
+    "summary": "Assesses the EU's preparedness for engineered pandemic pathogens, including DNA synthesis screening, lab biosafety oversight, dual-use research-of-concern policy, and the role of the Health Emergency Preparedness and Response Authority (HERA). Aims to inform a 2027 legislative proposal.",
+    "deadline": "2026-05-10",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-007",
+    "title": "[PLACEHOLDER] Carbon Border Adjustment Mechanism (CBAM) — review of sectoral coverage and default values",
+    "summary": "Reviews the scope of CBAM, including potential extension to chemicals and polymers, the methodology for default emission values for non-reporting importers, and interaction with the EU ETS phase-out of free allowances.",
+    "deadline": "2026-06-22",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
+  },
+  {
+    "id": "placeholder-008",
+    "title": "[PLACEHOLDER] Programming of the Global Gateway and EU development cooperation 2028-2034",
+    "summary": "Sets the priorities and indicative budget envelopes for EU development cooperation, including allocations across global health (malaria, TB, HIV, maternal health), humanitarian assistance, education, and infrastructure investment in low- and lower-middle-income countries.",
+    "deadline": "2026-05-25",
+    "source": "EU Have Your Say (placeholder data)",
+    "link": "https://have-your-say.ec.europa.eu/"
   }
 ]

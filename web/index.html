@@ -4,263 +4,1021 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ImpactFeed — high-impact EU consultations</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <style>
       :root {
-        --bg: #fafaf7;
-        --fg: #1a1a1a;
-        --muted: #666;
-        --line: #e2e2dc;
-        --accent: #2b6cb0;
-        --ai: #ddeefb;
-        --animal: #fce4d6;
-        --other: #ececec;
+        --bg: #fafafa;
+        --bg-2: #f4f4f6;
+        --surface: #ffffff;
+        --fg: #0a0a0a;
+        --fg-2: #404040;
+        --muted: #737373;
+        --line: #ececef;
+        --line-strong: #d4d4d8;
+        --accent: #6366f1;
+        --accent-soft: #eef2ff;
+        --accent-fg: #4338ca;
+        --shadow-sm: 0 1px 2px rgba(15, 15, 30, 0.04);
+        --shadow-md: 0 4px 14px rgba(15, 15, 30, 0.06);
+        --shadow-lg: 0 12px 32px rgba(15, 15, 30, 0.08);
+
+        --c-scope: #6366f1;
+        --c-reversibility: #14b8a6;
+        --c-tractability: #84cc16;
+        --c-urgency: #f59e0b;
+        --c-counterfactual: #ec4899;
+
+        --r-md: 10px;
+        --r-lg: 14px;
       }
+
       * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        font-feature-settings: "cv11", "ss01", "ss03";
         background: var(--bg);
         color: var(--fg);
-        line-height: 1.5;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
-      header {
-        padding: 2rem 1.5rem 1rem;
+      @supports (font-variation-settings: normal) {
+        body { font-family: "Inter var", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+      }
+
+      /* ───── Header ───── */
+      .hero {
+        position: relative;
+        padding: 4.5rem 1.5rem 3rem;
+        background:
+          radial-gradient(ellipse 70% 80% at 50% 0%, rgba(99, 102, 241, 0.12), transparent 60%),
+          radial-gradient(ellipse 50% 60% at 90% 0%, rgba(236, 72, 153, 0.07), transparent 60%),
+          linear-gradient(180deg, #fbfbfd 0%, var(--bg) 100%);
         border-bottom: 1px solid var(--line);
+        overflow: hidden;
       }
-      header h1 { margin: 0 0 0.25rem; font-size: 1.6rem; }
-      header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-      main { max-width: 880px; margin: 0 auto; padding: 1.5rem; }
-      .controls {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
+      .hero-inner { max-width: 980px; margin: 0 auto; }
+      .brand-mark {
+        display: inline-flex;
         align-items: center;
-        margin-bottom: 1.5rem;
-        padding: 1rem;
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 6px;
+        gap: 0.5rem;
+        padding: 0.3rem 0.7rem;
+        background: rgba(99, 102, 241, 0.08);
+        border: 1px solid rgba(99, 102, 241, 0.18);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--accent-fg);
+        letter-spacing: 0.01em;
+        margin-bottom: 1.2rem;
       }
-      .controls label { font-size: 0.85rem; color: var(--muted); margin-right: 0.5rem; }
+      .brand-mark .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.25); }
+      }
+      .hero h1 {
+        margin: 0 0 0.7rem;
+        font-size: clamp(2rem, 5vw, 3.1rem);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+        background: linear-gradient(135deg, #0a0a0a 0%, #4338ca 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero .lede {
+        margin: 0;
+        font-size: 1.08rem;
+        color: var(--fg-2);
+        max-width: 620px;
+        line-height: 1.55;
+      }
+
+      /* ───── Layout ───── */
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      /* ───── Filter panel ───── */
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow-sm);
+        padding: 1.4rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .panel-section + .panel-section {
+        margin-top: 1.3rem;
+        padding-top: 1.3rem;
+        border-top: 1px solid var(--line);
+      }
+      .panel-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        font-weight: 600;
+        margin: 0 0 0.7rem;
+      }
+
+      /* Cause chips */
       .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
       .chip {
         cursor: pointer;
-        padding: 0.3rem 0.7rem;
-        border: 1px solid var(--line);
+        padding: 0.42rem 0.85rem;
+        border: 1px solid var(--line-strong);
         border-radius: 999px;
-        font-size: 0.85rem;
-        background: white;
-        user-select: none;
-      }
-      .chip.active { background: var(--accent); color: white; border-color: var(--accent); }
-      .chip[data-cause="ai_governance"].active { background: #2b6cb0; }
-      .chip[data-cause="animal_welfare"].active { background: #c25b1b; }
-      .chip[data-cause="other"].active { background: #555; }
-      .slider-group { display: flex; align-items: center; gap: 0.5rem; }
-      input[type="range"] { width: 120px; }
-      .card {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        padding: 1rem 1.25rem;
-        margin-bottom: 0.8rem;
-        cursor: pointer;
-        transition: border-color 0.1s;
-      }
-      .card:hover { border-color: #b8b8ad; }
-      .card-head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
-      .card-title { font-weight: 600; font-size: 1.02rem; margin: 0 0 0.4rem; }
-      .card-meta { font-size: 0.82rem; color: var(--muted); }
-      .score {
-        flex-shrink: 0;
-        font-weight: 700;
-        font-size: 1.4rem;
-        color: var(--accent);
-        min-width: 2.5rem;
-        text-align: center;
-        line-height: 1;
-        padding-top: 0.1rem;
-      }
-      .tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; }
-      .tag {
-        font-size: 0.72rem;
-        padding: 0.15rem 0.55rem;
-        border-radius: 999px;
+        font-size: 0.83rem;
         font-weight: 500;
+        background: var(--surface);
+        color: var(--fg-2);
+        user-select: none;
+        transition: all 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
       }
-      .tag.ai_governance { background: var(--ai); color: #1a4974; }
-      .tag.animal_welfare { background: var(--animal); color: #8a3a0e; }
-      .tag.other { background: var(--other); color: #444; }
+      .chip::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--c, #94a3b8);
+        opacity: 0.5;
+      }
+      .chip:hover { border-color: var(--c, var(--accent)); transform: translateY(-1px); }
+      .chip.active {
+        background: var(--c-bg, var(--accent-soft));
+        color: var(--c-fg, var(--accent-fg));
+        border-color: var(--c, var(--accent));
+        box-shadow: 0 0 0 2px var(--c-soft, rgba(99, 102, 241, 0.08));
+      }
+      .chip.active::before { opacity: 1; }
+
+      /* Sliders */
+      .slider-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 0.85rem 1.4rem;
+      }
+      .slider-row {
+        display: grid;
+        grid-template-columns: 8px 7rem 1fr 1.4rem;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+      }
+      .slider-row .swatch {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      .slider-row .name { color: var(--fg-2); font-weight: 500; }
+      .slider-row .v { font-weight: 700; text-align: right; tabular-nums: 1; font-variant-numeric: tabular-nums; }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        height: 22px;
+        cursor: pointer;
+        width: 100%;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 4px;
+        background: linear-gradient(to right, var(--c, var(--accent)) 0%, var(--c, var(--accent)) var(--p, 0%), var(--line) var(--p, 0%), var(--line) 100%);
+        border-radius: 2px;
+      }
+      input[type="range"]::-moz-range-track {
+        height: 4px;
+        background: var(--line);
+        border-radius: 2px;
+      }
+      input[type="range"]::-moz-range-progress {
+        height: 4px;
+        background: var(--c, var(--accent));
+        border-radius: 2px;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: white;
+        border: 2px solid var(--c, var(--accent));
+        border-radius: 50%;
+        margin-top: -6px;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.1s ease;
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background: white;
+        border: 2px solid var(--c, var(--accent));
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+      }
+      input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.15); }
+
+      /* Count line */
+      .count {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 0.9rem;
+        padding: 0 0.2rem;
+      }
+      .count strong { color: var(--fg); font-weight: 600; }
+
+      /* ───── Cards ───── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        padding: 1.2rem 1.4rem;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        box-shadow: var(--shadow-sm);
+      }
+      .card:hover {
+        border-color: var(--line-strong);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-1px);
+      }
+      .card.expanded {
+        cursor: default;
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-md);
+      }
+      .card.expanded:hover { transform: none; }
+
+      .card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.3rem;
+        align-items: flex-start;
+      }
+      .card-body { flex: 1; min-width: 0; }
+      .card-title {
+        font-weight: 600;
+        font-size: 1.02rem;
+        margin: 0 0 0.4rem;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+      }
+      .card-meta {
+        font-size: 0.82rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .card-meta .sep { opacity: 0.4; }
+      .tags { display: flex; gap: 0.3rem; margin-top: 0.6rem; flex-wrap: wrap; }
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background: var(--c-bg, var(--accent-soft));
+        color: var(--c-fg, var(--accent-fg));
+      }
+
+      /* Score block */
+      .score-block {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding: 0.45rem 0.85rem;
+        background: linear-gradient(135deg, var(--accent-soft), rgba(99, 102, 241, 0.04));
+        border: 1px solid rgba(99, 102, 241, 0.22);
+        border-radius: 10px;
+        min-width: 4rem;
+      }
+      .score {
+        font-weight: 800;
+        font-size: 1.55rem;
+        color: var(--accent-fg);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        font-variant-numeric: tabular-nums;
+      }
+      .score-label {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      /* Mini bars */
+      .dim-bars {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+      .dim-bar { display: flex; flex-direction: column; gap: 0.3rem; }
+      .dim-bar-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .dim-bar-label {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .dim-bar-num {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--c);
+        font-variant-numeric: tabular-nums;
+      }
+      .dim-bar-track {
+        height: 5px;
+        background: var(--line);
+        border-radius: 99px;
+        overflow: hidden;
+        position: relative;
+      }
+      .dim-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--c), color-mix(in oklab, var(--c) 80%, white));
+        width: calc(var(--score) * 20%);
+        border-radius: 99px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Expanded details */
       .details {
         display: none;
-        margin-top: 1rem;
-        padding-top: 1rem;
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
         border-top: 1px solid var(--line);
-        font-size: 0.92rem;
       }
-      .card.expanded .details { display: block; }
-      .details h4 { margin: 0.8rem 0 0.3rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-      .details p { margin: 0; }
-      .details a { color: var(--accent); }
-      .dim-grid { display: grid; grid-template-columns: 8rem 1fr; gap: 0.4rem 1rem; margin-top: 0.5rem; }
-      .dim-grid dt { font-weight: 600; color: var(--muted); font-size: 0.85rem; }
-      .dim-grid dd { margin: 0; font-size: 0.9rem; }
-      .empty { text-align: center; color: var(--muted); padding: 3rem 1rem; }
-      .subscribe {
-        margin-top: 2.5rem;
-        padding: 1.5rem;
-        background: white;
+      .card.expanded .details { display: block; animation: fadeIn 0.25s ease; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .details h4 {
+        margin: 0 0 0.5rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .details p { margin: 0 0 1.3rem; font-size: 0.93rem; color: var(--fg-2); line-height: 1.6; }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 1.6rem;
+        align-items: start;
+      }
+      @media (max-width: 680px) {
+        .detail-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      }
+      .radar-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        background: linear-gradient(180deg, var(--bg-2), var(--surface));
+        border-radius: var(--r-md);
         border: 1px solid var(--line);
-        border-radius: 6px;
-        text-align: center;
       }
-      .subscribe h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
-      .subscribe p { margin: 0 0 1rem; color: var(--muted); font-size: 0.92rem; }
-      .subscribe a {
-        display: inline-block;
-        padding: 0.6rem 1.4rem;
-        background: var(--accent);
+      .radar-wrap svg { max-width: 100%; height: auto; }
+      .radar-caption {
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+      .dim-list { display: flex; flex-direction: column; gap: 0.7rem; }
+      .dim-item {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 0.8rem;
+        align-items: start;
+        padding: 0.6rem;
+        border-radius: 8px;
+        transition: background 0.15s;
+      }
+      .dim-item:hover { background: var(--bg-2); }
+      .dim-badge {
+        background: linear-gradient(135deg, var(--c), color-mix(in oklab, var(--c) 75%, black));
         color: white;
+        font-weight: 800;
+        font-size: 1rem;
+        height: 36px;
+        width: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        box-shadow: 0 2px 6px color-mix(in oklab, var(--c) 30%, transparent);
+      }
+      .dim-text-name {
+        font-weight: 600;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--c);
+        margin-bottom: 0.15rem;
+      }
+      .dim-text-note {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: var(--fg-2);
+      }
+      .source-link {
+        margin-top: 1.3rem;
+        padding-top: 1.1rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.88rem;
+      }
+      .source-link a {
+        color: var(--accent-fg);
         text-decoration: none;
-        border-radius: 4px;
         font-weight: 500;
       }
-      footer { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: 0.8rem; }
+      .source-link a:hover { text-decoration: underline; }
+
+      /* Empty state */
+      .empty {
+        text-align: center;
+        color: var(--muted);
+        padding: 3rem 1rem;
+        background: var(--surface);
+        border: 1px dashed var(--line-strong);
+        border-radius: var(--r-lg);
+      }
+      .empty .icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.5;
+      }
+      .empty code {
+        font-family: "SF Mono", ui-monospace, "Menlo", monospace;
+        font-size: 0.82rem;
+        background: var(--bg-2);
+        padding: 0.1rem 0.35rem;
+        border-radius: 4px;
+        color: var(--fg-2);
+      }
+
+      /* ───── Subscribe form ───── */
+      .subscribe {
+        margin-top: 2.5rem;
+        padding: 2rem 1.8rem;
+        background:
+          radial-gradient(ellipse 60% 80% at 100% 0%, rgba(236, 72, 153, 0.08), transparent 60%),
+          radial-gradient(ellipse 60% 80% at 0% 100%, rgba(99, 102, 241, 0.08), transparent 60%),
+          linear-gradient(180deg, var(--surface), var(--surface));
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .subscribe-head { margin-bottom: 1.3rem; }
+      .subscribe-head h2 {
+        margin: 0 0 0.3rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .subscribe-head p {
+        margin: 0;
+        color: var(--fg-2);
+        font-size: 0.93rem;
+      }
+      .subscribe-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+      }
+      @media (max-width: 680px) {
+        .subscribe-grid { grid-template-columns: 1fr; }
+      }
+      .subscribe-summary {
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: 0.9rem 1rem;
+        font-size: 0.85rem;
+      }
+      .subscribe-summary h3 {
+        margin: 0 0 0.6rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.3rem 0;
+        border-bottom: 1px dashed var(--line);
+      }
+      .summary-line:last-child { border-bottom: none; }
+      .summary-line .k { color: var(--muted); }
+      .summary-line .val { font-weight: 600; color: var(--fg); }
+      .summary-tags { display: flex; gap: 0.25rem; flex-wrap: wrap; max-width: 60%; justify-content: flex-end; }
+      .summary-tags .tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; }
+
+      .subscribe-form { display: flex; flex-direction: column; gap: 0.7rem; }
+      .subscribe-form label {
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+      .subscribe-form input {
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        background: var(--surface);
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .subscribe-form input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      .subscribe-form button {
+        margin-top: 0.5rem;
+        padding: 0.75rem 1.1rem;
+        border: none;
+        background: linear-gradient(135deg, var(--accent), #8b5cf6);
+        color: white;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: inherit;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.1s, box-shadow 0.15s;
+        box-shadow: 0 1px 4px rgba(99, 102, 241, 0.3);
+      }
+      .subscribe-form button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+      }
+      .subscribe-form button:disabled {
+        background: linear-gradient(135deg, #84cc16, #16a34a);
+        cursor: default;
+        transform: none;
+        box-shadow: 0 1px 4px rgba(132, 204, 22, 0.3);
+      }
+      .subscribe-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2.5rem 1rem 3rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      footer a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+      footer a:hover { color: var(--fg-2); }
     </style>
   </head>
   <body>
-    <header>
-      <h1>ImpactFeed</h1>
-      <p>EU public consultations, classified by EA cause area and scored for opportunity-for-impact.</p>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="brand-mark"><span class="dot"></span><span>ImpactFeed · v0</span></div>
+        <h1>Find the EU consultations<br />that actually matter.</h1>
+        <p class="lede">
+          Open public consultations from the European Commission, classified by EA cause area and scored across five dimensions of impact — so you spend your hours where they count.
+        </p>
+      </div>
     </header>
+
     <main>
-      <div class="controls">
-        <div>
-          <label>Cause:</label>
-          <div class="chips" id="cause-chips">
-            <span class="chip active" data-cause="ai_governance">AI governance</span>
-            <span class="chip active" data-cause="animal_welfare">Animal welfare</span>
-            <span class="chip" data-cause="other">Other</span>
-          </div>
+      <div class="panel">
+        <div class="panel-section">
+          <p class="panel-label">Cause area</p>
+          <div class="chips" id="cause-chips"><!-- populated by JS --></div>
         </div>
-        <div class="slider-group">
-          <label for="min-score">Min score:</label>
-          <input type="range" id="min-score" min="1" max="5" step="1" value="1" />
-          <span id="min-score-value">1</span>
+        <div class="panel-section">
+          <p class="panel-label">Filter by impact (minimum scores)</p>
+          <div class="slider-grid" id="slider-grid"><!-- populated by JS --></div>
         </div>
       </div>
 
+      <div class="count" id="count"></div>
       <div id="list"></div>
 
-      <div class="subscribe">
-        <h2>Get a weekly digest</h2>
-        <p>Pick your cause areas and minimum impact score; we'll email you what's open.</p>
-        <a href="https://tally.so/" target="_blank" rel="noopener">Subscribe →</a>
-        <!-- TODO(person-c): replace with the real Tally form URL once created. -->
-      </div>
+      <section class="subscribe" id="subscribe">
+        <div class="subscribe-head">
+          <h2>Get a weekly digest</h2>
+          <p>We'll email you what's open across your selected causes and impact thresholds. Edit the filters above to set your preferences.</p>
+        </div>
+        <div class="subscribe-grid">
+          <div class="subscribe-summary">
+            <h3>Your alert preferences</h3>
+            <div id="summary-content"></div>
+          </div>
+          <form class="subscribe-form" id="subscribe-form" novalidate>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" required placeholder="you@example.org" />
+            </div>
+            <div>
+              <label for="name">Name (optional)</label>
+              <input type="text" id="name" placeholder="Jane Doe" />
+            </div>
+            <button type="submit">Subscribe to weekly digest →</button>
+            <span class="subscribe-note">Form is a preview — no email is actually sent in v0.</span>
+          </form>
+        </div>
+      </section>
     </main>
+
     <footer>
-      ImpactFeed — built at the EAGx Stockholm 2026 mini hackathon.
-      <a href="https://github.com/valbuc/ea-mini-hackathon" target="_blank" rel="noopener">Source</a>.
+      ImpactFeed · built at the EAGx Stockholm 2026 mini hackathon ·
+      <a href="https://github.com/valbuc/ea-mini-hackathon" target="_blank" rel="noopener">view source</a>
     </footer>
 
     <script>
-      const CAUSE_LABEL = {
-        ai_governance: "AI governance",
-        animal_welfare: "Animal welfare",
-        other: "Other",
-      };
+      // ───── Taxonomy & palette ─────
+      const CAUSES = [
+        { key: "ai_governance",                 short: "AI governance",  c: "#3b82f6", bg: "#dbeafe", fg: "#1e40af" },
+        { key: "existential_catastrophic_risk", short: "X-risk",         c: "#8b5cf6", bg: "#ede9fe", fg: "#5b21b6" },
+        { key: "global_catastrophic_risks",     short: "GCR",            c: "#ef4444", bg: "#fee2e2", fg: "#991b1b" },
+        { key: "animal_welfare",                short: "Animal welfare", c: "#f97316", bg: "#ffedd5", fg: "#9a3412" },
+        { key: "global_health_development",     short: "Global health",  c: "#10b981", bg: "#d1fae5", fg: "#065f46" },
+        { key: "climate_change_mitigation",     short: "Climate",        c: "#14b8a6", bg: "#ccfbf1", fg: "#115e59" },
+        { key: "meta_ea_infrastructure",        short: "EA meta",        c: "#64748b", bg: "#e2e8f0", fg: "#334155" },
+        { key: "mental_health_wellbeing",       short: "Mental health",  c: "#ec4899", bg: "#fce7f3", fg: "#9d174d" },
+        { key: "longtermism",                   short: "Longtermism",    c: "#f59e0b", bg: "#fef3c7", fg: "#92400e" },
+        { key: "other",                         short: "Other",          c: "#94a3b8", bg: "#f1f5f9", fg: "#475569" },
+      ];
+      const CAUSE_BY_KEY = Object.fromEntries(CAUSES.map((c) => [c.key, c]));
 
+      const DIMS = [
+        { key: "scope",          label: "Scope",          c: "#6366f1" },
+        { key: "reversibility",  label: "Reversibility",  c: "#14b8a6" },
+        { key: "tractability",   label: "Tractability",   c: "#84cc16" },
+        { key: "urgency",        label: "Urgency",        c: "#f59e0b" },
+        { key: "counterfactual", label: "Counterfactual", c: "#ec4899" },
+      ];
+
+      // ───── State ─────
       const state = {
         all: [],
-        activeCauses: new Set(["ai_governance", "animal_welfare"]),
-        minScore: 1,
+        activeCauses: new Set(CAUSES.filter((c) => c.key !== "other").map((c) => c.key)),
+        minOverall: 1,
+        minDim: Object.fromEntries(DIMS.map((d) => [d.key, 1])),
       };
 
-      async function load() {
-        try {
-          const res = await fetch("../data/scored.json");
-          state.all = await res.json();
-        } catch (e) {
-          state.all = [];
-          console.error("Failed to load scored.json:", e);
+      // ───── Build cause chips ─────
+      function buildCauseChips() {
+        const root = document.getElementById("cause-chips");
+        root.innerHTML = CAUSES.map((c) => {
+          const active = state.activeCauses.has(c.key) ? " active" : "";
+          return `<span class="chip${active}" data-cause="${c.key}"
+            style="--c:${c.c};--c-bg:${c.bg};--c-fg:${c.fg};--c-soft:${c.c}1A">${c.short}</span>`;
+        }).join("");
+        root.querySelectorAll(".chip").forEach((el) => {
+          el.addEventListener("click", () => {
+            const k = el.dataset.cause;
+            if (state.activeCauses.has(k)) state.activeCauses.delete(k);
+            else state.activeCauses.add(k);
+            el.classList.toggle("active");
+            render();
+            renderSummary();
+          });
+        });
+      }
+
+      // ───── Build slider rows ─────
+      function buildSliders() {
+        const root = document.getElementById("slider-grid");
+        const overallRow = `
+          <div class="slider-row" style="--c:#6366f1">
+            <span class="swatch"></span>
+            <span class="name">Overall</span>
+            <input type="range" id="min-overall" min="1" max="5" step="0.5" value="1" />
+            <span class="v" id="min-overall-v">1</span>
+          </div>`;
+        const dimRows = DIMS.map(
+          (d) => `
+          <div class="slider-row" style="--c:${d.c}">
+            <span class="swatch"></span>
+            <span class="name">${d.label}</span>
+            <input type="range" id="min-${d.key}" data-dim="${d.key}" min="1" max="5" step="1" value="1" />
+            <span class="v" id="min-${d.key}-v">1</span>
+          </div>`,
+        ).join("");
+        root.innerHTML = overallRow + dimRows;
+
+        const overall = document.getElementById("min-overall");
+        const overallV = document.getElementById("min-overall-v");
+        overall.style.setProperty("--p", "0%");
+        overall.addEventListener("input", () => {
+          state.minOverall = parseFloat(overall.value);
+          overallV.textContent = overall.value;
+          overall.style.setProperty("--p", `${((state.minOverall - 1) / 4) * 100}%`);
+          render();
+          renderSummary();
+        });
+
+        DIMS.forEach((d) => {
+          const slider = document.getElementById(`min-${d.key}`);
+          const v = document.getElementById(`min-${d.key}-v`);
+          slider.style.setProperty("--p", "0%");
+          slider.addEventListener("input", () => {
+            state.minDim[d.key] = parseInt(slider.value, 10);
+            v.textContent = slider.value;
+            slider.style.setProperty("--p", `${((state.minDim[d.key] - 1) / 4) * 100}%`);
+            render();
+            renderSummary();
+          });
+        });
+      }
+
+      // ───── Mini bars ─────
+      function renderMiniBars(dims) {
+        return `
+          <div class="dim-bars">
+            ${DIMS.map((d) => {
+              const score = (dims && dims[d.key] && dims[d.key].score) || 0;
+              return `
+                <div class="dim-bar" style="--c:${d.c};--score:${score}">
+                  <div class="dim-bar-head">
+                    <span class="dim-bar-label">${d.label}</span>
+                    <span class="dim-bar-num">${score}</span>
+                  </div>
+                  <div class="dim-bar-track"><div class="dim-bar-fill"></div></div>
+                </div>`;
+            }).join("")}
+          </div>`;
+      }
+
+      // ───── Radar chart ─────
+      function renderRadar(dims, size = 220) {
+        const cx = size / 2, cy = size / 2;
+        const radius = (size / 2) * 0.6;
+        const angles = DIMS.map((_, i) => (i * 2 * Math.PI) / DIMS.length - Math.PI / 2);
+
+        const polyAt = (level) =>
+          DIMS.map((_, i) => {
+            const r = (level / 5) * radius;
+            return `${cx + r * Math.cos(angles[i])},${cy + r * Math.sin(angles[i])}`;
+          }).join(" ");
+
+        const grid = [1, 2, 3, 4, 5]
+          .map((lv) => `<polygon points="${polyAt(lv)}" fill="${lv === 5 ? 'rgba(99,102,241,0.03)' : 'none'}" stroke="#e4e4e7" stroke-width="0.7" />`)
+          .join("");
+
+        const axes = DIMS.map((d, i) => {
+          const x2 = cx + radius * Math.cos(angles[i]);
+          const y2 = cy + radius * Math.sin(angles[i]);
+          return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${d.c}" stroke-opacity="0.25" stroke-width="1" />`;
+        }).join("");
+
+        const points = DIMS.map((d, i) => {
+          const score = (dims && dims[d.key] && dims[d.key].score) || 0;
+          const r = (score / 5) * radius;
+          return [cx + r * Math.cos(angles[i]), cy + r * Math.sin(angles[i])];
+        });
+        const pointStr = points.map((p) => `${p[0]},${p[1]}`).join(" ");
+        const dots = points
+          .map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${DIMS[i].c}" stroke="white" stroke-width="1.5" />`)
+          .join("");
+
+        const labels = DIMS.map((d, i) => {
+          const lr = radius + 18;
+          const lx = cx + lr * Math.cos(angles[i]);
+          const ly = cy + lr * Math.sin(angles[i]);
+          let anchor = "middle";
+          const cosA = Math.cos(angles[i]);
+          if (cosA > 0.2) anchor = "start";
+          else if (cosA < -0.2) anchor = "end";
+          return `<text x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="middle" font-size="10.5" font-weight="600" fill="${d.c}">${d.label}</text>`;
+        }).join("");
+
+        return `
+          <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+            <defs>
+              <linearGradient id="radarFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#ec4899" stop-opacity="0.25" />
+              </linearGradient>
+            </defs>
+            ${grid}
+            ${axes}
+            <polygon points="${pointStr}" fill="url(#radarFill)" stroke="#6366f1" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.7" />
+            ${dots}
+            ${labels}
+          </svg>`;
+      }
+
+      // ───── Card ─────
+      function renderCard(c) {
+        const tags = (c.cause_areas || [])
+          .map((t) => {
+            const meta = CAUSE_BY_KEY[t];
+            const style = meta ? `style="--c-bg:${meta.bg};--c-fg:${meta.fg}"` : "";
+            const label = meta ? meta.short : t;
+            return `<span class="tag" ${style}>${label}</span>`;
+          })
+          .join("");
+
+        const dimItems = DIMS.map((d) => {
+          const dim = c.dimensions && c.dimensions[d.key];
+          const score = dim ? dim.score : "—";
+          const note = dim ? dim.note : "—";
+          return `
+            <div class="dim-item" style="--c:${d.c}">
+              <div class="dim-badge">${score}</div>
+              <div>
+                <div class="dim-text-name">${d.label}</div>
+                <div class="dim-text-note">${escapeHtml(note)}</div>
+              </div>
+            </div>`;
+        }).join("");
+
+        return `
+          <article class="card">
+            <div class="card-head">
+              <div class="card-body">
+                <h3 class="card-title">${escapeHtml(c.title || "(no title)")}</h3>
+                <div class="card-meta">
+                  <span>📅 ${escapeHtml(c.deadline || "unknown")}</span>
+                  <span class="sep">·</span>
+                  <span>${escapeHtml(c.source || "")}</span>
+                </div>
+                <div class="tags">${tags}</div>
+              </div>
+              <div class="score-block">
+                <div class="score">${formatScore(c.impact_score)}</div>
+                <div class="score-label">Impact</div>
+              </div>
+            </div>
+            ${renderMiniBars(c.dimensions)}
+            <div class="details">
+              <h4>Rationale</h4>
+              <p>${escapeHtml(c.rationale || "")}</p>
+              <h4>Dimension breakdown</h4>
+              <div class="detail-grid">
+                <div class="radar-wrap">
+                  ${renderRadar(c.dimensions, 220)}
+                  <div class="radar-caption">Each axis: 0 (centre) → 5 (edge).</div>
+                </div>
+                <div class="dim-list">${dimItems}</div>
+              </div>
+              ${c.link ? `<div class="source-link"><a href="${escapeHtml(c.link)}" target="_blank" rel="noopener">View full consultation on Have Your Say →</a></div>` : ""}
+            </div>
+          </article>`;
+      }
+
+      // ───── Filtering ─────
+      function passesFilters(c) {
+        if ((c.impact_score || 0) < state.minOverall) return false;
+        if (!(c.cause_areas || []).some((t) => state.activeCauses.has(t))) return false;
+        for (const d of DIMS) {
+          const score = (c.dimensions && c.dimensions[d.key] && c.dimensions[d.key].score) || 0;
+          if (score < state.minDim[d.key]) return false;
         }
-        render();
+        return true;
       }
 
       function render() {
         const list = document.getElementById("list");
-        const visible = state.all
-          .filter((c) => c.impact_score >= state.minScore)
-          .filter((c) => (c.cause_areas || []).some((t) => state.activeCauses.has(t)))
-          .sort((a, b) => b.impact_score - a.impact_score);
+        const count = document.getElementById("count");
+        const visible = state.all.filter(passesFilters).sort((a, b) => b.impact_score - a.impact_score);
+
+        count.innerHTML = `<strong>${visible.length}</strong> of ${state.all.length} consultations match.`;
 
         if (visible.length === 0) {
-          list.innerHTML = `<div class="empty">No consultations match the current filters.<br>
-            (If this is a fresh checkout, run <code>python -m pipeline.classify_and_score</code> first.)</div>`;
+          list.innerHTML = `
+            <div class="empty">
+              <div class="icon">∅</div>
+              No consultations match the current filters.<br />
+              <small>(If this is a fresh checkout, run <code>python -m pipeline.classify_and_score</code> first.)</small>
+            </div>`;
           return;
         }
 
         list.innerHTML = visible.map(renderCard).join("");
         list.querySelectorAll(".card").forEach((card) => {
-          card.addEventListener("click", () => card.classList.toggle("expanded"));
+          card.addEventListener("click", (e) => {
+            if (e.target.closest("a")) return;
+            card.classList.toggle("expanded");
+          });
         });
       }
 
-      function renderCard(c) {
-        const tags = (c.cause_areas || [])
-          .map((t) => `<span class="tag ${t}">${CAUSE_LABEL[t] || t}</span>`)
-          .join("");
-        const dims = c.dimension_notes || {};
-        const dimRows = ["scope", "reversibility", "tractability", "urgency", "counterfactual"]
-          .map((k) => `<dt>${k}</dt><dd>${escape(dims[k] || "—")}</dd>`)
-          .join("");
-        return `
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3 class="card-title">${escape(c.title || "(no title)")}</h3>
-                <div class="card-meta">Deadline ${escape(c.deadline || "unknown")} · ${escape(c.source || "")}</div>
-                <div class="tags">${tags}</div>
-              </div>
-              <div class="score">${c.impact_score}</div>
-            </div>
-            <div class="details">
-              <h4>Rationale</h4>
-              <p>${escape(c.rationale || "")}</p>
-              <h4>Dimension notes</h4>
-              <dl class="dim-grid">${dimRows}</dl>
-              ${c.link ? `<h4>Source</h4><p><a href="${escape(c.link)}" target="_blank" rel="noopener">${escape(c.link)}</a></p>` : ""}
-            </div>
+      // ───── Subscribe summary ─────
+      function renderSummary() {
+        const root = document.getElementById("summary-content");
+        const causes = [...state.activeCauses]
+          .map((k) => CAUSE_BY_KEY[k])
+          .filter(Boolean);
+        const tagsHtml = causes.length
+          ? causes
+              .map(
+                (c) =>
+                  `<span class="tag" style="--c-bg:${c.bg};--c-fg:${c.fg}">${c.short}</span>`,
+              )
+              .join("")
+          : `<span class="val">— none —</span>`;
+        const dimSummary = DIMS.filter((d) => state.minDim[d.key] > 1)
+          .map((d) => `${d.label} ≥ ${state.minDim[d.key]}`)
+          .join(", ") || "any";
+
+        root.innerHTML = `
+          <div class="summary-line">
+            <span class="k">Cause areas</span>
+            <span class="summary-tags">${tagsHtml}</span>
           </div>
-        `;
+          <div class="summary-line">
+            <span class="k">Min overall impact</span>
+            <span class="val">${formatScore(state.minOverall)}</span>
+          </div>
+          <div class="summary-line">
+            <span class="k">Per-dimension floors</span>
+            <span class="val">${dimSummary}</span>
+          </div>`;
       }
 
-      function escape(s) {
-        return String(s).replace(/[&<>"']/g, (m) => ({
+      // ───── Subscribe form (preview only) ─────
+      function setupSubscribeForm() {
+        const form = document.getElementById("subscribe-form");
+        const btn = form.querySelector("button");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const email = document.getElementById("email").value.trim();
+          if (!email) {
+            document.getElementById("email").focus();
+            return;
+          }
+          btn.disabled = true;
+          btn.textContent = "✓ Subscribed (preview only)";
+        });
+      }
+
+      // ───── Helpers ─────
+      function formatScore(s) {
+        if (s == null) return "—";
+        return Number.isInteger(s) ? `${s}.0` : Number(s).toFixed(1);
+      }
+      function escapeHtml(s) {
+        return String(s ?? "").replace(/[&<>"']/g, (m) => ({
           "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
         }[m]));
       }
 
-      // Wire up controls
-      document.querySelectorAll(".chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          const cause = chip.dataset.cause;
-          if (state.activeCauses.has(cause)) state.activeCauses.delete(cause);
-          else state.activeCauses.add(cause);
-          chip.classList.toggle("active");
-          render();
-        });
-      });
-      const minScore = document.getElementById("min-score");
-      const minScoreValue = document.getElementById("min-score-value");
-      minScore.addEventListener("input", () => {
-        state.minScore = parseInt(minScore.value, 10);
-        minScoreValue.textContent = minScore.value;
+      // ───── Init ─────
+      buildCauseChips();
+      buildSliders();
+      setupSubscribeForm();
+      renderSummary();
+      (async function load() {
+        try {
+          const res = await fetch("../data/scored.json");
+          state.all = await res.json();
+        } catch (e) {
+          console.error("Failed to load scored.json:", e);
+          state.all = [];
+        }
         render();
-      });
-
-      load();
+      })();
     </script>
   </body>
 </html>

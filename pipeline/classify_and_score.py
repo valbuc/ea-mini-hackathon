@@ -1,8 +1,9 @@
 """Classify and score consultations using Claude.
 
 Reads data/consultations.json (or data/sample_consultations.json as fallback),
-calls Claude per consultation with a cached system prompt, and writes the
-scored output to data/scored.json.
+calls Claude per consultation with a cached system prompt, computes the
+overall impact_score as the average of the five dimension scores, and writes
+the result to data/scored.json.
 
 Usage:
     python -m pipeline.classify_and_score
@@ -17,7 +18,7 @@ from pathlib import Path
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
-from pipeline.models import Score
+from pipeline.models import DIMENSION_NAMES, LLMScore
 from pipeline.prompt import SCORING_SYSTEM_PROMPT
 
 load_dotenv()
@@ -29,6 +30,12 @@ if not os.environ.get("ANTHROPIC_API_KEY"):
     sys.exit("ANTHROPIC_API_KEY missing — copy .env.example to .env and fill it in.")
 
 client = Anthropic()
+
+
+def _impact_score(parsed: LLMScore) -> float:
+    """Overall impact score = arithmetic mean of the five dimension scores."""
+    scores = [getattr(parsed.dimensions, dim).score for dim in DIMENSION_NAMES]
+    return round(sum(scores) / len(scores), 1)
 
 
 def score_consultation(consultation: dict) -> dict:
@@ -51,20 +58,23 @@ def score_consultation(consultation: dict) -> dict:
             }
         ],
         messages=[{"role": "user", "content": user_text}],
-        output_format=Score,
+        output_format=LLMScore,
     )
 
     cached = response.usage.cache_read_input_tokens
     written = response.usage.cache_creation_input_tokens
     print(f"  tokens: in={response.usage.input_tokens} cache_read={cached} cache_write={written}")
 
-    parsed: Score = response.parsed_output
+    parsed: LLMScore = response.parsed_output
     return {
         **consultation,
         "cause_areas": parsed.cause_areas,
-        "impact_score": parsed.impact_score,
+        "impact_score": _impact_score(parsed),
         "rationale": parsed.rationale,
-        "dimension_notes": parsed.dimension_notes.model_dump(),
+        "dimensions": {
+            dim: getattr(parsed.dimensions, dim).model_dump()
+            for dim in DIMENSION_NAMES
+        },
     }
 
 
