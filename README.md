@@ -1,8 +1,8 @@
-# EA Consultation Tracker
+# ImpactFeed
 
-> Working title — discoverable, EA-aware tracking of EU and national public consultations, with cause-area filtering and impact scoring so individuals and experts can act where it counts most.
+> Discoverable, EA-aware tracking of EU and national public consultations, with cause-area filtering and impact scoring so individuals and experts can act where it counts most.
 
-Built for the **EAGx Stockholm 2026 mini hackathon**.
+Built for the **EAGx Stockholm 2026 mini hackathon** — 1 hour, 3 people.
 
 ---
 
@@ -41,7 +41,7 @@ There are useful tools in this space, but each is built for a different audience
 | [PolicyPulse (academic)](https://arxiv.org/html/2505.23994v1) | ❌ (analyses discussions) | ❌ | ❌ | ❌ | ❌ (researcher-side) | ✅ |
 | Quorum / Plural Policy (commercial) | ✅ broad | ✅ | ❌ | ❌ | ❌ (lobbyist-side) | ❌ |
 | [EA Forum — Policy topic](https://forum.effectivealtruism.org/topics/policy) | Ad-hoc, occasional | Partial | ✅ | ❌ | ✅ | ✅ |
-| **EA Consultation Tracker (this project)** | ✅ EU + UK at MVP | ✅ (extensible) | ✅ | ✅ | ✅ | ✅ |
+| **ImpactFeed (this project)** | ✅ EU at MVP, UK v2 | ✅ (extensible) | ✅ | ✅ | ✅ | ✅ |
 
 The wedge: **discovery + EA cause classification + opportunity score + opt-in alerts**, citizen-and-expert-facing, open source.
 
@@ -51,8 +51,8 @@ The wedge: **discovery + EA cause classification + opportunity score + opt-in al
 
 Build a tool that:
 
-1. **Crawls** the websites and feeds of the EU Commission ("Have Your Say") and UK government (gov.uk consultations) for active consultations.
-2. **Aggregates** the results into a structured database.
+1. **Crawls** the websites and feeds of the EU Commission ("Have Your Say"), and later UK gov.uk, for active consultations.
+2. **Aggregates** the results into a structured store.
 3. **Classifies** each consultation against a borrowed [80,000 Hours / EA Forum](https://forum.effectivealtruism.org/topics/policy) cause-area taxonomy (multi-label).
 4. **Scores** "opportunity for impact" using an LLM judgment against an explicit rubric — and **shows the reasoning** so users can override it.
 5. **Publishes** through a clean website + opt-in email digests, with subscribers selecting cause areas and minimum impact thresholds.
@@ -61,36 +61,37 @@ Long-term (explicitly **out of MVP**): an opt-in expert directory that surfaces 
 
 ---
 
-## 4. MVP Specification
+## 4. The 1-Hour Hackathon Build
 
-### 4.1 Audience
+### 4.1 What we ship in 60 minutes
 
-EA-aligned individuals and individual experts (e.g. a biosecurity researcher who would respond to a relevant consultation if prompted). **Not** EA orgs with their own policy teams (they're a v2 audience), and **not** general public.
+A working **demo**, not a deployed product. The story: *"Here's a real list of open EU consultations, classified by EA cause area and scored for impact, with the reasoning you can read."*
 
-### 4.2 Data sources (v1)
+### 4.2 Audience
 
-- **EU "Have Your Say"** — all open consultations and "calls for evidence"
-- **UK gov.uk consultations** — all open consultations
+EA-aligned individuals and individual experts (e.g. a biosecurity researcher who would respond to a relevant consultation if prompted). **Not** EA orgs with their own policy teams (v2 audience). **Not** the general public.
 
-Both are scraped (no documented public API for Have Your Say). Update cadence: **TBD — see Open Questions**.
+### 4.3 Initial cause areas (narrow on purpose)
 
-### 4.3 Cause-area taxonomy (v1, narrow)
+Two only, multi-label:
 
-Borrowed and trimmed from 80,000 Hours / EA Forum. Multi-label.
+- **AI governance & safety** — active EU AI Act delegated regs and UK AISI / Frontier AI Taskforce pipelines provide steady consultation flow.
+- **Animal welfare / factory farming** — EU and UK regularly consult on cage bans, welfare labelling, transport rules.
 
-Initial scope (deliberately narrow per project decision): **TBD — see Open Questions**, picked from:
-- AI governance & safety
-- Biosecurity & pandemic preparedness
-- Animal welfare / factory farming
-- Global health & development
-- Existential risk governance (broader)
-- EA-meta / institutional decision-making
+Anything else → **Other** bucket, not surfaced in alerts.
 
-Anything not matching any tag → bucketed as **Other** and not surfaced in alerts.
+### 4.4 Data source (v0)
 
-### 4.4 Impact scoring
+**EU Have Your Say** only. No documented public API, so:
 
-LLM-judged (Claude), 1–5, with a written rationale visible to the user. Score is a *single number* but the rubric is explicit and multidimensional:
+- **Plan A:** quick BeautifulSoup scrape of the open-consultations listing.
+- **Plan B (fallback):** if the portal is JS-heavy / fights us inside 15 minutes, hand-curate ~10 real open consultations into `consultations.json`. The pipeline + UI is the demo, not the scraper.
+
+UK source is v1.
+
+### 4.5 Impact scoring
+
+LLM-judged (Claude), 1–5, with a written rationale visible to the user. Single number, multidimensional rubric:
 
 | Dimension | What it captures |
 |---|---|
@@ -100,49 +101,52 @@ LLM-judged (Claude), 1–5, with a written rationale visible to the user. Score 
 | **Urgency** | Deadline proximity — and is there time for a quality response? |
 | **Counterfactual** | Will EA-aligned voices likely otherwise be heard? (low → higher score) |
 
-Implementation: a single Claude call per consultation with the consultation text + rubric + cause tags, returning `{score: 1-5, rationale: string, dimension_notes: {...}}`. Scores are **not authoritative** — they are visible-reasoning suggestions users can disagree with.
+One Claude call per consultation: input is title + summary + cause tags + rubric; output is `{score: 1-5, rationale: string, dimension_notes: {...}}`. Scores are **not authoritative** — they are visible-reasoning suggestions users can disagree with.
 
-### 4.5 Surfaces
+### 4.6 Tech stack
 
-- **Web** — list view, filterable by cause area + min score + deadline; detail page per consultation showing original link, summary, score, rationale, deadline.
-- **Email digest** — opt-in. Users select cause areas and minimum score. Cadence: **TBD — see Open Questions**.
-- **RSS** — one feed per cause area as a low-effort secondary surface.
+| Layer | v0 (1 hour) | Post-hackathon |
+|---|---|---|
+| Language | Python | Python |
+| Storage | `consultations.json` + `scored.json` (committed to repo) | SQLite, then Postgres at scale |
+| Scraper schedule | Run once locally before demo | GitHub Actions cron, daily |
+| Frontend | Single static HTML page or one-file Astro project | Astro on Vercel |
+| Hosting | `localhost`, or `vercel --prod` if 5 min spare | Vercel preview URL → custom domain later |
+| "Subscribe" | Tally form embed (intent capture only) | Resend (better free tier than Buttondown, dev-friendly), weekly Monday digest |
 
-### 4.6 Out of scope for v1 (deferred deliberately)
+### 4.7 60-minute task split (3 people)
 
-- Expert outreach bot (and any automated cold contact)
-- National sources beyond EU + UK (Germany, France, etc. → v2)
-- Multilingual (EU consultations are normally available in English at the Commission level)
-- Tracking whether a consultation actually influenced final law (great v3 idea: scrape final adopted text, LLM-map which submitted themes survived)
+| Time | Person A — Data | Person B — LLM | Person C — UI |
+|---|---|---|---|
+| 0–10 | Repo setup, scaffold dirs | Repo setup, draft scoring prompt | Repo setup, scaffold static page |
+| 10–40 | Scrape Have Your Say → `consultations.json` (or hand-curate 10 if scraper fights you) | `classify_and_score.py`: reads JSON, calls Claude, writes `scored.json` | Page reads `scored.json`; filter by cause + min score; click row → show rationale |
+| 40–50 | Help wherever stuck | Help wherever stuck | Add Tally subscribe embed |
+| 50–60 | Integration test, demo dry-run | Integration test, demo dry-run | Integration test, demo dry-run |
+
+### 4.8 Out of scope for v0 (deferred deliberately)
+
+- Expert outreach bot and any automated cold contact
+- UK and other national sources (v1)
+- SQLite / database (JSON suffices for ~tens of consultations)
+- Real email sending — Tally captures intent (v1 = Resend, weekly Monday digest)
+- Cron / hosting for the scraper (v1 = GitHub Action)
+- Multilingual (EU consultations are normally available in English)
+- "Did my comment matter?" — scrape final adopted text, LLM-map which submitted themes survived (v3)
 - AI-generated comment / astroturf detection on the response side
-- User accounts (MVP uses stateless email signup; preferences encoded in the signup form)
+- User accounts (preferences encoded in the subscribe form)
 
-### 4.7 License
+### 4.9 Sustainability / handoff
 
-**MIT** (matches existing repo `LICENSE`). Open source — easier for EA Forum / 80k Hours to adopt or fork.
-
-### 4.8 Sustainability / handoff
-
-Identify a partner before the hackathon ends so the project doesn't die at demo day. Candidates: EA Forum moderators, an EA policy org (e.g. Center for Long-Term Resilience), Apart Research, or a 80,000 Hours team member. **TBD — see Open Questions**.
+TBD. Identify a partner before / during the hackathon so the project doesn't die at demo day. Candidates: EA Forum moderators, an EA policy org (e.g. Center for Long-Term Resilience), Apart Research, or a 80,000 Hours team member.
 
 ---
 
-## 5. Open Questions
+## 5. License
 
-These need your input before we lock the spec:
-
-1. **Project name** — `EA Consultation Tracker` is a working title. Better suggestions?
-2. **Initial cause areas (2–3)** — narrow scope was chosen. Which two or three? Recommendation: AI governance + biosecurity, since both have active EU regulatory pipelines (AI Act follow-ons, EU biosecurity strategy).
-3. **Tech stack** — recommend: Python (scraping + LLM calls) + SQLite/Postgres + Astro or Next.js for the static-ish site + Buttondown or Resend for email. Acceptable, or different preference?
-4. **Hosting** — Vercel / Netlify / Fly / a VPS?
-5. **Update cadence for the scraper** — daily? twice-daily? more?
-6. **Email digest cadence** — weekly Monday? Or instant per-consultation alert above a score threshold?
-7. **Hackathon timing & team** — when is EAGx Stockholm 2026, how many days, solo or with a team?
-8. **Domain name** — do you want one registered, or `.github.io` / Vercel preview for the demo?
-9. **Sustainability partner** — anyone in mind to hand this off to post-hackathon?
+[MIT](LICENSE).
 
 ---
 
 ## 6. Status
 
-🚧 **Pre-build.** Specs in flight. See *Open Questions* above.
+🚧 **Pre-build.** Specs locked, ready to start the 60 minutes.
