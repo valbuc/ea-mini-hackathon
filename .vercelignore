@@ -1,0 +1,12 @@
+# The Python scoring pipeline runs locally only. Hiding it from Vercel
+# stops the build from auto-detecting this as a Python project.
+pipeline/
+scraper/
+__pycache__/
+*.pyc
+*.pyo
+requirements.txt
+
+# Local secrets — never ship to the deploy.
+.env
+.env.local
