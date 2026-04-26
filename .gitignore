@@ -219,5 +219,7 @@ __marimo__/
 
 # Node / Vercel
 node_modules/
-.vercel
+.vercel/
 .env.local
+*.log
+
